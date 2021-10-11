@@ -20,7 +20,7 @@ var express = require("express");
 var app = express();
 
 // setup a 'route' to listen on the default url path
-app.use(express.static('views'));
+app.use(express.static('static'));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/views/home.html"))
