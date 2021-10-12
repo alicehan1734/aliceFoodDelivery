@@ -46,20 +46,5 @@ app.use((req, res) => {
 })
 
 
-
-app.get("/nameq", (req, res) => {
-  var name = req.query.name;
-  var helloname = mymodule.sayhello(name || "Noname");
-
-  res.send(helloname);
-
-})
-
-app.get("/nameq/:name", (req, res) => {
-  var name = req.params.name;
-  var helloname = mymodule.sayhello(name || "Noname");
-
-  res.send(helloname);
-})
 // setup http server to listen on HTTP_PORT
 app.listen(HTTP_PORT);
