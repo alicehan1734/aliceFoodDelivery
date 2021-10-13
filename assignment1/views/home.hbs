@@ -105,56 +105,25 @@
     </div>
 
     <div class="topmenugrid">
+
+      {{#each topMeals}}
+      {{#if top }}
       <div class="card">
-        <img src="./images/ingredient1.jpg">
+        <img src={{img}}>
         <div>
-          <h4><b>Homemade Supreme Pizza</b></h4>
-          <p>Pizza sauce, mozzarella, bacon, onion, beef mince, capsicum, pepperoni, mushroom, olives</p>
-          <button>$25.78</button>
+          <h4><b>{{title}}</b></h4>
+          <p>{{included}}</p>
+          <button>${{price}}</button>
         </div>
       </div>
+      {{else}}
 
-      <div class="card">
-        <img src="./images/ingredient2.jpg">
-        <div>
-          <h4><b>Mad Radish</b></h4>
-          <p>Eggs, green beans, Kalamata olives, tomatoes, tuna, and tangy potatoes</p>
-          <button>$12.22</button>
+      {{/if}}
 
-        </div>
-      </div>
+      {{else}}
+      <div>No data</div>
+      {{/each}}
 
-      <div class="card">
-        <img src="./images/ingredient3.jpg">
-        <div>
-          <h4><b>Pasta Pronta</b></h4>
-          <p>Egg for colour and richness (in some types of pasta), and possibly vegetable juice (such as spinach, beet,
-            tomato, carrot), herbs</p>
-          <button>$13.99</button>
-
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="./images/ingredient4.jpg">
-        <div>
-          <h4><b>Tteok-bokki</b></h4>
-          <p>Tteok (rice cakes), fishcake, gochujang</p>
-          <button>$11.99</button>
-
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="./images/ingredient5.jpg">
-        <div>
-          <h4><b>Yonge Burger</b></h4>
-          <p>Ground beef, egg, beaten, dry bread crumbs, evaporated milk, Worcestershire sauce, cayenne pepper, garlic,
-            minced</p>
-          <button>$10.35</button>
-
-        </div>
-      </div>
     </div>
   </div>
 
