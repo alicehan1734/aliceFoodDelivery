@@ -10,11 +10,9 @@
 *
 ************************************************************************************/
 
-var HTTP_PORT = process.env.PORT || 8080;
 var express = require("express");
 const exphbs = require('express-handlebars');
 
-const mealsModel = require('./models/mealsList.js')
 
 var app = express();
 
@@ -24,33 +22,9 @@ app.engine('.hbs', exphbs({
 }));
 
 app.set('view engine', '.hbs');
-var path = require("path");
-
-// setup a 'route' to listen on the default url path
 app.use(express.static(__dirname + "/static"));
 
-app.get("/", (req, res) => {
 
-  res.render("home", {
-    topMeals: mealsModel.getTopMeals()
-  });
-
-});
-
-app.get("/menu", (req, res) => {
-  res.render("menu", {
-  });
-});
-
-app.get("/signup", (req, res) => {
-  res.render("signup", {
-  });
-});
-
-app.get("/login", (req, res) => {
-  res.render("login", {
-  });
-});
 
 app.use(function (err, req, res, next) {
   console.log(err.stack);
@@ -62,5 +36,13 @@ app.use((req, res) => {
 })
 
 
-// setup http server to listen on HTTP_PORT
+const generalController = require("./controllers/general");
+const mealController = require("./controllers/meals");
+
+app.use("/", generalController);
+app.use("/", mealController);
+
+
+var HTTP_PORT = process.env.PORT || 8080;
+
 app.listen(HTTP_PORT);

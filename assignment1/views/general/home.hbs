@@ -43,17 +43,4 @@
     </div>
   </div>
 </div>
-
-<div class="topmenu">
-  <h2>Top Meals</h2>
-
-  <div class="topmenugrid">
-
-    {{#each topMeals}}
-    {{>topMeal this}}
-    {{else}}
-    <div>No data</div>
-    {{/each}}
-
-  </div>
-</div>
+{{>topMealList}}
