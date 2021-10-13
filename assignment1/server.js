@@ -15,9 +15,16 @@ var path = require("path");
 const mymodule = require("./modules/mymodules.js");
 
 var express = require("express");
+const exphbs = require('express-handlerbars');
 
 
 var app = express();
+
+
+app.engine('.hbs', exphbs({ extname: '.hbs' }));
+app.set('view engine', '.hbs');
+
+var path = require("path");
 
 // setup a 'route' to listen on the default url path
 app.use(express.static('static'));
