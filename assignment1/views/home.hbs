@@ -1,176 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/home.css">
-  <title>Document</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@500&display=swap" rel="stylesheet">
-</head>
-
-<body>
+<div class="grid">
+  <h1>HOW IT WORKS</h1>
+  <button>Watch the video ></button>
+</div>
+<div class="gridmain">
   <div>
-    <div class="top">A small number of members may have their delivery rescheduled during the week of the National Day
-      of Truth and Reconciliation. <a href="">Click here for details.</a></div>
-    <header>
-
-      <div>
-        <ul>
-          <li> <img src="/images/logo.png" /></li>
-          <li><a class="active" href="menu">ON THE MENU</a></li>
-          <li><a href="#PRICING">PRICING</a></li>
-          <li><a href="#BLOG">BLOG</a></li>
-          <li><a href="#FAQ">FAQ</a></li>
-          <li><a href="#WITHENSHAW">ALICE WITHENSHAW</a></li>
-          <li><a href="#GIFT">GIFT CARD</a></li>
-          <div>
-            <a class="buttonLogin" href="login">Log in</a>
-            <a class="buttonSignup" href="signup">Sign up</a>
-          </div>
-        </ul>
-
-      </div>
-
-    </header>
-
-    <div class="container">
-      <img src="./images/backgroung.jpg" alt="Cinque Terre" height="800">
-      <div>
-        <h1>Welcome to Alice Food Delivery!</h1>
-        <h3>You can get 5 times farm-fresh food with free delivery when you sign up now !</h3>
-        <a class="buttonSignup" style="width: 1000px; font-size: 30px; font-weight: 800;" href="signup">Get
-          Started!</a>
-      </div>
-    </div>
-
-
-  </div>
-
-
-  <div class="grid">
-    <h1>HOW IT WORKS</h1>
-    <button>Watch the video ></button>
-  </div>
-  <div class="gridmain">
+    <img src="./images/freshfood1.jpg" />
     <div>
-      <img src="./images/freshfood1.jpg" />
-      <div>
-        <h4>
-          We create original recipes.
-        </h4>
-        <p>Our in-house culinary team uses premium ingredients to create unique menus and products for breakfast, lunch,
-          and dinner.</p>
-      </div>
-    </div>
-    <div>
-      <img src="./images/freshfood2.jpg" />
-      <div>
-        <h4>
-          You choose your preferences.
-        </h4>
-        <p>Choose from a variety of healthy, delicious meals each week that accommodate your dietary preferences.</p>
-      </div>
-    </div>
-    <div>
-      <img src="./images/freshfood3.jpg" />
-      <div>
-        <h4>
-          We deliver fresh ingredients to your door — every week.
-        </h4>
-        <p>Your ingredients are packaged in our temperature-conditioned boxes, so food stays fresh - even when you
-          aren't at home.</p>
-      </div>
-    </div>
-    <div>
-      <img src="./images/freshfood4.jpg" />
-      <div>
-        <h4>
-          You eat incredible meals every day.
-        </h4>
-        <p>From a one-minute weekday breakfast to a delicious two-course dinner made with your own hands, our recipes
-          cater to all cooking levels and styles.</p>
-      </div>
+      <h4>
+        We create original recipes.
+      </h4>
+      <p>Our in-house culinary team uses premium ingredients to create unique menus and products for breakfast, lunch,
+        and dinner.</p>
     </div>
   </div>
-
-  <div class="topmenu">
-    <h2>WHAT'S ON THE MENU THIS WEEK?</h2>
+  <div>
+    <img src="./images/freshfood2.jpg" />
     <div>
-      <button class="buttonLogin radius">Dinner</button>
-      <button class="buttonSignup radius">Break fast</button>
-    </div>
-
-    <div class="topmenugrid">
-
-      {{#each topMeals}}
-      {{#if top }}
-      <div class="card">
-        <img src={{img}}>
-        <div>
-          <h4><b>{{title}}</b></h4>
-          <p>{{included}}</p>
-          <button>${{price}}</button>
-        </div>
-      </div>
-      {{else}}
-
-      {{/if}}
-
-      {{else}}
-      <div>No data</div>
-      {{/each}}
-
+      <h4>
+        You choose your preferences.
+      </h4>
+      <p>Choose from a variety of healthy, delicious meals each week that accommodate your dietary preferences.</p>
     </div>
   </div>
-
-  <footer>
+  <div>
+    <img src="./images/freshfood3.jpg" />
     <div>
-      <div>
-        <p>Home</p>
-        <p>On The Menu</p>
-        <p>Pricing</p>
-        <p>Goodfood WOW</p>
-        <p>Join our team!</p>
-        <p>Our Story</p>
-      </div>
-
-      <div>
-        <p>Blog</p>
-        <p>FAQ</p>
-        <p>Pricing</p>
-        <p>Our Ingredients</p>
-        <p>Our Commitment</p>
-        <p>Gift Cards</p>
-      </div>
-
-      <div>
-        <p>Press</p>
-        <p>Terms of Use</p>
-        <p>Purchase Terms & Conditions</p>
-        <p>Investors</p>
-      </div>
-
-      <div>
-        <p>GET IN TOUCH</p>
-        <p>1(855) 515-5191</p>
-        <p> (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)</p>
-        <p>chef@makegoodfood.ca</p>
-        <p>Live chat</p>
-        <p>(Mon-Fri: 8AM-8PM, Sat-Sun: 9AM-5PM)</p>
-        <p>FOLLOW US</p>
-        <div>
-          <img src="./images/facebook.png" />
-          <img src="./images/instagram.png" />
-        </div>
-      </div>
+      <h4>
+        We deliver fresh ingredients to your door — every week.
+      </h4>
+      <p>Your ingredients are packaged in our temperature-conditioned boxes, so food stays fresh - even when you
+        aren't at home.</p>
     </div>
-    <p>Copyright © Fall 2021, Nick Romanidis, WEB322 ZAA</p>
-  </footer>
+  </div>
+  <div>
+    <img src="./images/freshfood4.jpg" />
+    <div>
+      <h4>
+        You eat incredible meals every day.
+      </h4>
+      <p>From a one-minute weekday breakfast to a delicious two-course dinner made with your own hands, our recipes
+        cater to all cooking levels and styles.</p>
+    </div>
+  </div>
+</div>
 
-</body>
+<div class="topmenu">
+  <h2>Top Meals</h2>
 
-</html>
+  <div class="topmenugrid">
+
+    {{#each topMeals}}
+    {{>topMeal this}}
+    {{else}}
+    <div>No data</div>
+    {{/each}}
+
+  </div>
+</div>

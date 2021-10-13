@@ -1,14 +1,28 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <title>View Data</title>
-  <link rel="stylesheet" href="/site.css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/home.css">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@500&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  {{>welcome}}
+  <div>
+    <div class="top">A small number of members may have their delivery rescheduled during the week of the National Day
+      of Truth and Reconciliation. <a href="">Click here for details.</a></div>
+    {{>header}}
+
+    {{>hero}}
+  </div>
   {{{body}}}
+  {{>footer}}
+
 </body>
 
 </html>
