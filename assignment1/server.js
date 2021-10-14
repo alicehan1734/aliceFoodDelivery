@@ -22,9 +22,21 @@ app.engine('.hbs', exphbs({
 }));
 
 app.set('view engine', '.hbs');
+
 app.use(express.static(__dirname + "/static"));
 
 
+const generalController = require("./controllers/general");
+const mealController = require("./controllers/meals");
+
+app.use("/", generalController);
+app.use("/list", mealController);
+
+var HTTP_PORT = process.env.PORT || 8080;
+
+function onHttpStart() {
+  console.log("Express http server listening on: " + HTTP_PORT);
+}
 
 app.use(function (err, req, res, next) {
   console.log(err.stack);
@@ -36,13 +48,5 @@ app.use((req, res) => {
 })
 
 
-const generalController = require("./controllers/general");
-const mealController = require("./controllers/meals");
+app.listen(HTTP_PORT, onHttpStart);
 
-app.use("/", generalController);
-app.use("/", mealController);
-
-
-var HTTP_PORT = process.env.PORT || 8080;
-
-app.listen(HTTP_PORT);

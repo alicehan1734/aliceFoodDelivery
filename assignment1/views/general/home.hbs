@@ -1,46 +1,25 @@
+{{>hero}}
 <div class="grid">
   <h1>HOW IT WORKS</h1>
   <button>Watch the video ></button>
 </div>
 <div class="gridmain">
-  <div>
-    <img src="./images/freshfood1.jpg" />
-    <div>
-      <h4>
-        We create original recipes.
-      </h4>
-      <p>Our in-house culinary team uses premium ingredients to create unique menus and products for breakfast, lunch,
-        and dinner.</p>
-    </div>
-  </div>
-  <div>
-    <img src="./images/freshfood2.jpg" />
-    <div>
-      <h4>
-        You choose your preferences.
-      </h4>
-      <p>Choose from a variety of healthy, delicious meals each week that accommodate your dietary preferences.</p>
-    </div>
-  </div>
-  <div>
-    <img src="./images/freshfood3.jpg" />
-    <div>
-      <h4>
-        We deliver fresh ingredients to your door — every week.
-      </h4>
-      <p>Your ingredients are packaged in our temperature-conditioned boxes, so food stays fresh - even when you
-        aren't at home.</p>
-    </div>
-  </div>
-  <div>
-    <img src="./images/freshfood4.jpg" />
-    <div>
-      <h4>
-        You eat incredible meals every day.
-      </h4>
-      <p>From a one-minute weekday breakfast to a delicious two-course dinner made with your own hands, our recipes
-        cater to all cooking levels and styles.</p>
-    </div>
+  {{#each info}}
+  {{>info this}}
+  {{else}}
+  <div>No data</div>
+  {{/each}}
+</div>
+
+<div class="topmenu">
+  <h2>Check Alice Food Top Meals</h2>
+
+  <div class="topmenugrid">
+
+    {{#each topMeals}}
+    {{>topMeal this}}
+    {{else}}
+    <div>No data</div>
+    {{/each}}
   </div>
 </div>
-{{>topMealList}}

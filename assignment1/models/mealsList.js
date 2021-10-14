@@ -5,9 +5,9 @@ var meals = [
     desc: "very delicious",
     category: "Classic Meals",
     price: 30.00,
-    time: 25.78,
+    time: 22,
     serv: 2,
-    calperServ: 890,
+    calperServ: 750,
     img: "./images/ingredient1.jpg",
     top: true,
     type: "breakfast"
@@ -18,9 +18,9 @@ var meals = [
     desc: "very delicious",
     category: "Classic Meals",
     price: 28.03,
-    time: 25.78,
+    time: 23,
     serv: 2,
-    calperServ: 890,
+    calperServ: 920,
     img: "./images/ingredient2.jpg",
     top: true,
     type: "breakfast"
@@ -31,9 +31,9 @@ var meals = [
     desc: "very delicious",
     category: "Classic Meals",
     price: 15.22,
-    time: 25.78,
+    time: 12,
     serv: 2,
-    calperServ: 890,
+    calperServ: 1000,
     img: "./images/ingredient3.jpg",
     top: true,
     type: "breakfast"
@@ -44,9 +44,9 @@ var meals = [
     desc: "very delicious",
     category: "Classic Meals",
     price: 22.23,
-    time: 25.78,
-    serv: 2,
-    calperServ: 890,
+    time: 8,
+    serv: 3,
+    calperServ: 500,
     img: "./images/ingredient4.jpg",
     top: false,
     type: "breakfast"
@@ -57,13 +57,15 @@ var meals = [
     desc: "very delicious",
     category: "Classic Meals",
     price: 55.2,
-    time: 25.78,
-    serv: 2,
-    calperServ: 890,
+    time: 34,
+    serv: 1,
+    calperServ: 940,
     img: "./images/ingredient5.jpg",
     top: true,
     type: "breakfast"
-  }
+  },
+
+
 ];
 
 
@@ -87,3 +89,76 @@ module.exports.getTopMeals = function () {
   return filtered;
 }
 
+module.exports.getClassicMeals = function () {
+  var filtered = [];
+
+  for (var i = 0; i < meals.length; i++) {
+
+    if (meals[i].category == "Classic Meals") {
+      filtered.push(meals[i]);
+    }
+
+  }
+
+  return filtered;
+}
+
+
+module.exports.getEasyMeals = function () {
+  var filtered = [];
+
+  for (var i = 0; i < meals.length; i++) {
+
+    if (meals[i].category == "Easy Prep Meals") {
+      filtered.push(meals[i]);
+    }
+
+  }
+
+  return filtered;
+}
+
+
+module.exports.getLowCarbMeals = function () {
+  var filtered = [];
+
+  for (var i = 0; i < meals.length; i++) {
+
+    if (meals[i].category == "Clean15 (Low carb)") {
+      filtered.push(meals[i]);
+    }
+
+  }
+
+  return filtered;
+}
+
+
+module.exports.getVegiMeals = function () {
+  var filtered = [];
+
+  for (var i = 0; i < meals.length; i++) {
+
+    if (meals[i].category == "Vegetarian Meals") {
+      filtered.push(meals[i]);
+    }
+
+  }
+
+  return filtered;
+}
+
+
+module.exports.getFamilyMeals = function () {
+  var filtered = [];
+
+  for (var i = 0; i < meals.length; i++) {
+
+    if (meals[i].category == "Family-Style Meals") {
+      filtered.push(meals[i]);
+    }
+
+  }
+
+  return filtered;
+}
