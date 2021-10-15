@@ -16,8 +16,12 @@ router.get("/", (req, res) => {
 });
 
 router.get("/menu", (req, res) => {
-  res.render("general/menu");
 
+  console.log(mealsModel.getSeperateMeals());
+
+  res.render("general/menu", {
+    mealsCategory: mealsModel.getSeperateMeals()
+  });
 });
 
 router.get("/signup", (req, res) => {
