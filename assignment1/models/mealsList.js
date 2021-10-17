@@ -61,7 +61,7 @@ var meals = [
     serv: 1,
     calperServ: 940,
     img: "./images/ingredient5.jpg",
-    top: true,
+    top: false,
     type: "breakfast"
   },
   {
@@ -74,7 +74,7 @@ var meals = [
     serv: 2,
     calperServ: 750,
     img: "./images/ingredient1.jpg",
-    top: true,
+    top: false,
     type: "breakfast"
   },
   {
@@ -87,7 +87,7 @@ var meals = [
     serv: 2,
     calperServ: 920,
     img: "./images/ingredient2.jpg",
-    top: true,
+    top: false,
     type: "breakfast"
   },
   {
@@ -100,7 +100,7 @@ var meals = [
     serv: 2,
     calperServ: 1000,
     img: "./images/ingredient3.jpg",
-    top: true,
+    top: false,
     type: "breakfast"
   },
   {
@@ -113,7 +113,7 @@ var meals = [
     serv: 3,
     calperServ: 500,
     img: "./images/ingredient4.jpg",
-    top: false,
+    top: true,
     type: "breakfast"
   },
   {
