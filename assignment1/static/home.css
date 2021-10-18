@@ -2,25 +2,40 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Noto Sans Display', sans-serif;
+  padding-top: 50px;
+
+}
+.frontfix{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
 }
 .top {
   text-align: center;
-  background-color: #755309;
+  background-color: #878383;
   color: white;
-  padding: 20px;
+  padding: 5px;
+  font-size: 12px;
 }
 
 .top > a {
-  color: yellow;
+  color: #E95C63;
 }
 
 header {
   width: 100%;
-  background-color: #333;
+  background-color: white;
+  border: 1px solid #e95c63;
+  font-family: 'Architects Daughter', cursive;
 
 }
 
-
+header > div {
+  display: flex;
+  place-content: space-between;
+}
 header>div>ul{
   list-style-type: none;
   margin: 0;
@@ -39,50 +54,61 @@ header>div>ul>li {
 
 header>div>ul>li a {
   display: block;
-  color: white;
+  color: #F4858C;
   text-align: center;
-  padding: 14px 16px;
+  padding: 10px 25px;
   text-decoration: none;
 }
 
-header>div>ul>li img {
-  width: 70px;
-  height: 70px;
+header>div>ul>li a:hover {
+  text-decoration: underline;
+  color: #E95C63;
+  transition: .8s;
+
+}
+
+
+header>div> div img {
+  width: 50px;
+  height: 50px;
   padding-left: 30px;
 }
 
+
+
 .buttonLogin {
   text-decoration: none;
-
-  background-color: #f4511e;
+  background-color: #E95C63;
   border: none;
   color: white;
   display: inline-block;
   cursor: pointer;
-  padding: 16px 32px;
+  padding: 13px 32px;
   text-align: center;
   font-size: 16px;
   margin: 4px 2px;
   opacity: 1;
   transition: 0.4s;
+  border-radius: 24px;
 
 }
 
-.buttonLogin:hover {opacity: 0.6}
 
 .buttonSignup {
   background-color: white;
   border: none;
   text-decoration: none;
   cursor: pointer;
-  color: #f4511e;
-  padding: 16px 32px;
+  color: #E95C63;
+  padding: 13px 32px;
   text-align: center;
   font-size: 16px;
   margin: 4px 2px;
   opacity: 0.6;
   transition: 0.4s;
   display: inline-block;
+  border-radius: 24px;
+  border: 1px solid #e95c63;
 
 }
 
@@ -96,7 +122,9 @@ header>div>ul>li img {
 
 
 .container > img{
-  width: -webkit-fill-available;}
+  width: 100%;
+  margin-top: -250px;
+}
 
 .container >div {
   position: absolute;
@@ -108,8 +136,12 @@ header>div>ul>li img {
 .grid{
   text-align: center;
 }
+
+.grid > h2 {
+  color: #585859;
+}
 .grid > button {
-  background-color: #f4511e;
+  background-color: #F4858C;
   border: none;
   text-decoration: none;
   cursor: pointer;
@@ -126,7 +158,7 @@ header>div>ul>li img {
 
 }
 
-.grid > button:hover {background-color: coral;}
+.grid > button:hover {background-color: #E95C63;}
 
 .gridmain {
   display: flex;
@@ -136,8 +168,7 @@ header>div>ul>li img {
 
 .gridmain > div{
   flex: 1;
-  padding: 50px;
-
+  padding: 20px;
 }
 .gridmain > div > img{
   width: 15vw;
@@ -146,9 +177,12 @@ header>div>ul>li img {
 }
 
 .topmenu{
-  background-color: darkgray;
+  background-color: #DFDFDF;
 }
 
+.topmenu > h2 {
+  color: #777777;
+}
 .radius{
   border-radius:30px;
   font-size: 2.1rem;
@@ -170,7 +204,7 @@ header>div>ul>li img {
   background-color: white;
   color: #333;
   flex: 1;
-  margin: 30px;
+  margin: 15px;
 }
 
 .card:hover {
@@ -195,18 +229,19 @@ header>div>ul>li img {
   margin: 4px 2px;
   cursor: pointer;
   background-color: white; 
-  color: #008CBA; 
-  border: 2px solid #008CBA;
+  color: #E95C63; 
+  border: 2px solid #F4858C;
   font-weight: 800;
 }
 
 .topmenugrid{
   display: flex;
+  flex-flow: wrap;
 }
 
 footer {
-  background-color: #f4511e;
-  color: white;
+  background-color: #FFFFFF;
+  color: #585859;
   padding: 10px 50px;
 }
 footer >div {
@@ -223,5 +258,85 @@ footer > div > div > div {
 }
 
 footer > div > div > div >img {
-  margin: 10px;
+  margin: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+footer > div > div> a {
+  display: block;
+  margin-bottom: 15px;
+}
+
+footer > div > div> a:hover {
+color: #E95C63;
+cursor: pointer;
+}
+
+footer > div > div> p {
+  display: block;
+  margin: 0;
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+
+footer > p {
+  font-size: 10px;
+}
+
+.navbar {
+  display: none;
+  position: absolute;
+  right:32px;
+  font-size: 24px;
+  color: #E95C63;
+  padding-top: 10px;
+}
+@media screen and (max-width : 1000px) {
+  .gridmain {
+    flex-direction: column;
+  }
+
+  header > div {
+    flex-direction: column;
+  }
+  header > div >div {
+    align-self: center;
+
+  }
+
+  header > div >div > a img {
+    padding: 0;
+  }
+  header > div > ul {
+    align-items: ceneter;
+    width: 100%;
+    display: none;
+  }
+
+.container > img{
+  width: 100%;
+  margin-top: 0px;
+}
+.navbar {
+  display: block;
+}
+
+.top {
+  display: none;
+}
+
+footer >div {
+
+  flex-direction: column;
+}
+
+.card >div > button {
+  padding: 0;
+}
+
+.card > img {
+
+  height: 150px;
+}
 }
