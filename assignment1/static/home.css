@@ -2,8 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Noto Sans Display', sans-serif;
-  padding-top: 50px;
-
+  padding-top: 65px;
 }
 .frontfix{
   position: fixed;
@@ -29,7 +28,6 @@ header {
   background-color: white;
   border: 1px solid #e95c63;
   font-family: 'Architects Daughter', cursive;
-
 }
 
 header > div {
@@ -310,8 +308,10 @@ footer > p {
   }
   header > div > ul {
     align-items: ceneter;
-    width: 100%;
     display: none;
+    width: fit-content;
+    align-self: center;
+
   }
 
 .container > img{
@@ -326,6 +326,11 @@ footer > p {
   display: none;
 }
 
+.navbar_button.active,
+.navbar_menu.active {
+  display: flex;
+
+}
 footer >div {
 
   flex-direction: column;

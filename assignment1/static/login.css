@@ -96,6 +96,8 @@ input[type="submit"]{
 
 .pass:hover{
   text-decoration: underline;
+  color: #E95C63;
+
 }
 
 input[type="submit"]:hover{
