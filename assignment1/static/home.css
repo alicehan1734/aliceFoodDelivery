@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Noto Sans Display', sans-serif;
-  padding-top: 65px;
+  padding-top: 60px;
 }
 .frontfix{
   position: fixed;
@@ -343,5 +343,15 @@ footer >div {
 .card > img {
 
   height: 150px;
+}
+
+.menuCon {
+  flex-direction: column;
+}
+
+.navbar_menu> li> a{
+  font-size: 13px;
+  padding: 0;
+  padding: 2vw
 }
 }

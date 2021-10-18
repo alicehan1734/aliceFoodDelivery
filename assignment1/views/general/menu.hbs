@@ -6,11 +6,43 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="menu.css">
+
 </head>
 
 <body>
   <div>
     {{>hero}}
+  </div>
+  <div class="menuCon">
+    <button>Classic Meals</button>
+    <button>Dessert</button>
+    <button>Easy Prep Meals</button>
+    <button>Vegetarian Meals</button>
+    <button>Family-Style Meals</button>
+  </div>
+
+  <hr />
+  <div class="con">
+    {{#each mealsCategory}}
+
+    <div>{{categoryName}}</div>
+
+
+    <div class="menu">
+      {{#mealkits}}
+      {{>menuMeal this}}
+
+      {{/mealkits}}
+
+    </div>
+
+    <hr />
+
+    {{else}}
+    <div>No data</div>
+    {{/each}}
+
 
   </div>
 
