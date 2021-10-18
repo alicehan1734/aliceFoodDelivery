@@ -4,7 +4,7 @@
 }
 
 
-.menuCon > button {
+.menuCon > a {
   background-color: white;
   border: none;
   text-decoration: none;
@@ -21,7 +21,7 @@
 
 }
 
-.menuCon > button:hover{
+.menuCon > a:hover{
   background-color: #e95c63;
   color: white;
   transition: 0.4s;
@@ -56,4 +56,8 @@
 
 hr {
   margin: 10px;
+}
+
+.conMenuName{
+  margin-top: 80px;
 }

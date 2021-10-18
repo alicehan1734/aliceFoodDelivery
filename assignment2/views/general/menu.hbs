@@ -15,18 +15,18 @@
     {{>hero}}
   </div>
   <div class="menuCon">
-    <button>Classic Meals</button>
-    <button>Dessert</button>
-    <button>Easy Prep Meals</button>
-    <button>Vegetarian Meals</button>
-    <button>Family-Style Meals</button>
+    <a href="#0">Classic Meals</a>
+    <a href="#1">Dessert</a>
+    <a href="#2">Easy Prep Meals</a>
+    <a href="#3">Vegetarian Meals</a>
+    <a href="#4">Family-Style Meals</a>
   </div>
 
-  <hr />
   <div class="con">
     {{#each mealsCategory}}
+    <hr id={{@index}} />
 
-    <div>{{categoryName}}</div>
+    <div class="conMenuName">{{categoryName}}</div>
 
 
     <div class="menu">
@@ -37,7 +37,6 @@
 
     </div>
 
-    <hr />
 
     {{else}}
     <div>No data</div>

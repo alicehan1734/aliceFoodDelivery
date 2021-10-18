@@ -241,6 +241,7 @@ footer {
   background-color: #FFFFFF;
   color: #585859;
   padding: 10px 50px;
+  display: grid;
 }
 footer >div {
   display: flex;
@@ -332,7 +333,7 @@ footer > p {
 
 }
 footer >div {
-
+  display: block;
   flex-direction: column;
 }
 
