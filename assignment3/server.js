@@ -27,10 +27,8 @@ app.use(express.static(__dirname + "/static"));
 
 
 const generalController = require("./controllers/general");
-const mealController = require("./controllers/meals");
 
 app.use("/", generalController);
-app.use("/list", mealController);
 
 var HTTP_PORT = process.env.PORT || 8080;
 
