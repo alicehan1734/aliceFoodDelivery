@@ -1,0 +1,74 @@
+<!--
+/************************************************************************************
+*  WEB322 – Test #3 (Fall 2021)
+*  I declare that this solution is my own work in accordance with the Seneca Academic
+*  Policy. No part of this test has been copied manually or electronically from
+*  any other source, excluding those listed below, or distributed to other students.
+*  
+*  For the questions contained in this file, you may refer to the Node.js online
+*  documentation, Express online documentation, HandleBars documentation, web322.ca website, 
+*  and the course notes.
+*  Be careful not to spend too much time looking at these references!
+*
+*  Name: Heeyeon Han
+*  Student ID: 154222194
+*  Course/Section: WEB322/ZAA
+* 
+************************************************************************************/
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test #3 - QUESTION 1</title>
+</head>
+
+<body>
+
+    <h1>Test #3 - Home Page</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <td>Employee ID</td>
+                <td>Name</td>
+                <td>Manager?</td>
+            </tr>
+        </thead>
+        <tbody>
+            <!--
+                *** 8 Marks ***
+                For each object in the array populate the html table.  Show the employeeId, fullName,
+                and the text "Yes" (when isManager value is true) or "No" (when isManager is not true).
+                Ensure each value is represented in the correct table column.
+
+                If there is no data, show the message "No Data" spanning all three columns.
+            -->
+            {{#each dataToShow}}
+            <tr>
+                <td>{{employeeId}}</td>
+                <td>{{fullName}}</td>
+
+                {{#if isManager}}
+                <td>Yes</td>
+                {{else}}
+                <td>No</td>
+                {{/if}}
+            </tr>
+            {{else}}
+            <tr>
+                <td colspan="4">No data available.</td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/newStudent">Go to Question #2</a>
+    </p>
+
+</body>
+
+</html>

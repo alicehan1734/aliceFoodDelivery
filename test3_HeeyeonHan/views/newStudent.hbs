@@ -1,0 +1,79 @@
+<!--
+/************************************************************************************
+*  WEB322 – Test #3 (Fall 2021)
+*  I declare that this solution is my own work in accordance with the Seneca Academic
+*  Policy. No part of this test has been copied manually or electronically from
+*  any other source, excluding those listed below, or distributed to other students.
+*  
+*  For the questions contained in this file, you may refer to the Node.js online
+*  documentation, Express online documentation, HandleBars documentation, web322.ca website, 
+*  and the course notes.
+*  Be careful not to spend too much time looking at these references!
+*
+*  Name: Heeyeon Han
+*  Student ID: 154222194
+*  Course/Section: WEB322/ZAA
+* 
+************************************************************************************/
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test #3 - QUESTION 2</title>
+</head>
+
+<body>
+    <h1>Test #3 - New Student Form</h1>
+
+    <!--
+		2 Marks - Configure the form so it posts back to the "/newStudent" URL.
+		          You must ensure the POST method is used (even if it is the default action).
+	-->
+    <form action="/newStudent" method="post">
+
+        <!-- 2 Marks - Add the "studentNum" text box below the label -->
+        <p>
+            <label for="studentNum">Student Number</label><br />
+            <input id="studentNum" name="studentNum" type="text">
+        </p>
+
+
+        <!-- 2 Marks - Add the "fullName" text box below the label -->
+        <p>
+            <label for="fullName">First &amp; Last Name</label><br />
+            <input id="fullName" name="fullName" type="text">
+
+        </p>
+
+
+        <!--
+             3 Marks - Add the "program" list box below the label.
+                       The list box must contain the items "CPA", "CPD", and "CNS / CTY"
+                       and it must have a height of three rows.
+        -->
+        <p>
+            <label for="program">Program</label><br />
+            <select id="program" name="program" size="3">
+                <option value="CPA">CPA</option>
+                <option value="CPD">CPD</option>
+                <option value="CNS / CTY">CNS / CTY</option>
+            </select>
+        </p>
+
+
+        <hr />
+
+
+        <!--
+             1 Mark - Add a button to submit the form.
+                      The button will contain the text "Add Student"
+        -->
+
+        <input type="submit" value="Add Student">
+
+    </form>
+</body>
+
+</html>
