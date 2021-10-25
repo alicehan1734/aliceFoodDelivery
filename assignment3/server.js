@@ -22,9 +22,7 @@ app.engine('.hbs', exphbs({
 }));
 
 app.set('view engine', '.hbs');
-
 app.use(express.static(__dirname + "/static"));
-
 
 const generalController = require("./controllers/general");
 
@@ -44,7 +42,6 @@ app.use(function (err, req, res, next) {
 app.use((req, res) => {
   res.status(404).send("Page Not Found");
 })
-
 
 app.listen(HTTP_PORT, onHttpStart);
 
