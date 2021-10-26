@@ -17,29 +17,29 @@
       <p>Create your account by entering your email address and choosing a password</p>
     </div>
 
-    <form method="post">
+    <form method="post" action="/signup">
       <div class="texting_field">
-        <input type="fname" required>
+        <input type="firstName" id="firstName" name="" value="{{values.firstName}}" required>
         <span></span>
-        <label>* First name</label>
+        <label for="firstName">* First name</label>
       </div>
 
       <div class="texting_field">
-        <input type="lname" required>
+        <input type="lname" id="lastName" name="lastName" value="{{values.lastName}}" required>
         <span></span>
-        <label>* Last name</label>
+        <label for="lastName">* Last name</label>
       </div>
 
       <div class="texting_field">
-        <input type="email" required>
+        <input type="email" id="email" name="email" value="{{values.email}}" required>
         <span></span>
-        <label>* Email Address</label>
+        <label for="email">* Email Address</label>
       </div>
 
       <div class="texting_field">
-        <input type="password" required>
+        <input type="password" id="password" name="password" value="{{values.password}}" required>
         <span></span>
-        <label>* Password</label>
+        <label for="password">* Password</label>
       </div>
 
       <input type="submit" value="Sign up today!!">

@@ -28,8 +28,29 @@ router.get("/signup", (req, res) => {
   res.render("general/signup");
 });
 
+router.post("/signup", (req, res) => {
+  res.json(req.body);
+
+  const { firstName, lastName, email, password } = req.body;
+
+  let passed = true;
+
+  if (passed) {
+    res.render("general/signup", {
+      values: req.body
+    })
+  }
+});
+
+
 router.get("/login", (req, res) => {
   res.render("general/login");
 });
+
+
+router.post("/login", (req, res) => {
+
+});
+
 
 module.exports = router;

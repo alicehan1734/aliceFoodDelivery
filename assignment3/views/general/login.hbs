@@ -16,18 +16,18 @@
       Welcome back !!!
     </div>
 
-    <form method="post">
+    <form method="post" action="/login">
       <div class="texting_field">
-        <input type="name" required>
+        <input type="email" id="email" name="email" required>
         <span></span>
-        <label>* User name</label>
+        <label for="email">* Email address</label>
 
       </div>
 
       <div class="texting_field">
-        <input type="password" required>
+        <input type="password" id="password" name="password" required>
         <span></span>
-        <label>* Password</label>
+        <label for="password">* Password</label>
       </div>
 
       <div class="pass">Forgot Password?</div>

@@ -12,6 +12,7 @@
 
 var express = require("express");
 const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
 
 
 var app = express();
@@ -23,6 +24,7 @@ app.engine('.hbs', exphbs({
 
 app.set('view engine', '.hbs');
 app.use(express.static(__dirname + "/static"));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 const generalController = require("./controllers/general");
 
