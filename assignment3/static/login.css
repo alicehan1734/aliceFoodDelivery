@@ -32,7 +32,7 @@
 form .texting_field{
   position: relative;
   border-bottom: 2px solid #adadad;
-  margin: 30px 0;
+  margin: 10px 0 30px 0;
 }
 .texting_field input{
   width: 100%;

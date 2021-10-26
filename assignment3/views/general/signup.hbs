@@ -18,26 +18,43 @@
     </div>
 
     <form method="post" action="/signup">
+
+      {{#if validation.firstName}}
+      <span style="color: red; margin-left:10px">{{validation.firstName}}</span>
+      {{/if}}
+
       <div class="texting_field">
-        <input type="firstName" id="firstName" name="" value="{{values.firstName}}" required>
+        <input type="text" id="firstName" name="firstName" value="{{values.firstName}}">
         <span></span>
         <label for="firstName">* First name</label>
       </div>
 
+      {{#if validation.lastName}}
+      <span style="color: red; margin-left:10px">{{validation.lastName}}</span>
+      {{/if}}
+
       <div class="texting_field">
-        <input type="lname" id="lastName" name="lastName" value="{{values.lastName}}" required>
+        <input type="text" id="lastName" name="lastName" value="{{values.lastName}}">
         <span></span>
         <label for="lastName">* Last name</label>
       </div>
 
+      {{#if validation.email}}
+      <span style="color: red; margin-left:10px">{{validation.email}}</span>
+      {{/if}}
       <div class="texting_field">
-        <input type="email" id="email" name="email" value="{{values.email}}" required>
+        <input type="text" id="email" name="email" value="{{values.email}}">
         <span></span>
         <label for="email">* Email Address</label>
       </div>
 
+
+      {{#if validation.password}}
+      <span style="color: red; margin-left:10px">{{validation.password}}</span>
+      {{/if}}
+
       <div class="texting_field">
-        <input type="password" id="password" name="password" value="{{values.password}}" required>
+        <input type="password" id="password" name="password" value="{{values.password}}">
         <span></span>
         <label for="password">* Password</label>
       </div>

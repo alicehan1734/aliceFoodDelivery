@@ -29,15 +29,57 @@ router.get("/signup", (req, res) => {
 });
 
 router.post("/signup", (req, res) => {
-  res.json(req.body);
-
   const { firstName, lastName, email, password } = req.body;
 
   let passed = true;
+  let validation = {};
+
+
+  if (typeof firstName !== 'string' || firstName.trim().length === 0) {
+
+    passed = false;
+    validation.firstName = "You must specify a first name."
+  }
+  else if (typeof firstName !== 'string' || firstName.trim().length < 2) {
+    passed = false;
+    validation.firstName = "First name should be at least 2 characters long."
+  }
+
+
 
   if (passed) {
+
+    const sgMail = require("@sendgrid/mail");
+    sgMail.setApiKey("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");
+
+    const msg = {
+      to: email,
+      from: 'hhan34@myseneca.ca',
+      subject: 'Contact Us Form Submission',
+      html:
+        `Vistor's Full Name: ${firstName} ${lastName}<br>
+          Vistor's Email Address: ${email}<br>
+          Vistor's message: ${message}<br>
+          `
+    };
+
+    sgMail.send(msg)
+      .then(() => {
+        res.send("Success, validation passed, email sent.");
+      })
+      .catch(err => {
+        console.log(`Error ${err}`);
+
+        res.render("general/signup", {
+          values: req.body,
+          validation
+        });
+      });
+
+  } else {
     res.render("general/signup", {
-      values: req.body
+      values: req.body,
+      validation
     })
   }
 });
