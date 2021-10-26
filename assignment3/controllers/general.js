@@ -50,7 +50,7 @@ router.post("/signup", (req, res) => {
   if (passed) {
 
     const sgMail = require("@sendgrid/mail");
-    sgMail.setApiKey("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");
+    sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
     const msg = {
       to: email,
