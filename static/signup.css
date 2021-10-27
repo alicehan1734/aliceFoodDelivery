@@ -1,0 +1,96 @@
+
+.con{
+  padding: 5vw;
+  font-family: 'Architects Daughter', cursive;
+}
+
+
+.con-first {
+  text-align: center;
+  font-size: 25px;
+}
+.con-first > p{
+  font-size: 15px;
+
+}
+
+.center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background: #E95C63;
+  border-radius: 10px;
+}
+.center h1{
+  text-align: center;
+  padding: 20px 0;
+}
+.center form{
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+form .texting_field{
+  position: relative;
+  margin: 10px 0 30px 0;
+}
+.texting_field input{
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+
+}
+.texting_field label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 16px;
+}
+.texting_field span::before{
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #E95C63;
+  transition: .5s;
+}
+
+
+.texting_field input:focus ~ label,
+.texting_field input:valid ~ label{
+  top: -5px;
+  color: #E95C63;
+}
+
+
+.texting_field input:focus ~ span::before,
+.texting_field input:valid ~ span::before{
+  width: 100%;
+}
+
+input[type="submit"]{
+  width: 100%;
+  height: 50px;
+  border: 1px solid;
+  background: white;
+  border-radius: 15px;
+  font-size: 18px;
+  color: #E95C63;
+  cursor: pointer;
+  outline: none;
+}
+
+
+input[type="submit"]:hover{
+  background-color: #F4858C;
+  color: white;
+  transition: .8s;
+}

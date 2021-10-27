@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/home.css">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="frontfix">
+
+    {{>header}}
+    <script>
+      const toggleButton = document.querySelector('.navbar');
+      const navbar_menu = document.querySelector('.navbar_menu');
+      const navbar_button = document.querySelector('.navbar_button');
+
+
+      toggleButton.addEventListener('click', () => {
+        navbar_menu.classList.toggle('active');
+        navbar_button.classList.toggle('active');
+
+      });
+
+
+    </script>
+  </div>
+  {{{body}}}
+  {{>footer}}
+
+</body>
+
+</html>

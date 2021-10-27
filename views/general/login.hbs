@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="login.css">
+
+</head>
+
+<body>
+  <div class="con">
+    <div class="con-first">
+      Welcome back !!!
+    </div>
+
+    <form method="post" action="/login">
+      {{#if validation.email}}
+      <span style="color: red; margin-left:10px">{{validation.email}}</span>
+      {{/if}}
+      <div class="texting_field">
+        <input type="text" id="email" name="email" value="{{values.email}}">
+        <span></span>
+        <label for="email">* Email address</label>
+
+      </div>
+      {{#if validation.password}}
+      <span style="color: red; margin-left:10px">{{validation.password}}</span>
+      {{/if}}
+
+      <div class="texting_field">
+        <input type="text" id="password" name="password" value="{{values.password}}">
+        <span></span>
+        <label for="password">* Password</label>
+      </div>
+
+
+
+      <div class="pass">Forgot Password?</div>
+      <input type="submit" value="Login">
+      <div class="signup_link"> Not a client yet? <a href="/signup">Signup here</a>
+      </div>
+
+
+    </form>
+
+  </div>
+</body>
+
+</html>
