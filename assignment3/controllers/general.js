@@ -87,7 +87,7 @@ router.post("/signup", (req, res) => {
         <br> 
         Thank you for signing up to Alice Food Delivery.<br>
         We are very happy you are one of <span style="color: #E95C63;">'Alice Food Delivery'</span> family members.<br>
-        Please be in touch us if you have any questions.<br> 
+        Please be in touch us if you have any questions.<br><br>
 
         Your sign up information,<br><br>
 
@@ -96,7 +96,7 @@ router.post("/signup", (req, res) => {
 
         Regards,<br><br>
         HeeYeon Han<br> 
-        <span style="color: #E95C63;">'Alice Food Delivery'</span><br> 
+        <span style="color: #E95C63;">Alice Food Delivery</span><br> 
         +1(647) 269-1734<br> 
         (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)<br>
         <br>
@@ -105,7 +105,9 @@ router.post("/signup", (req, res) => {
 
     sgMail.send(msg)
       .then(() => {
-        res.render("general/welcome");
+        res.render("general/welcome", {
+          fullName: `${firstName} ${lastName}`,
+        });
       })
       .catch(err => {
         console.log(`Error ${err}`);
@@ -158,6 +160,15 @@ router.post("/login", (req, res) => {
       validation
     })
   }
+});
+
+router.get("/welcome", (req, res) => {
+  //res.render("general/welcome");
+
+  res.render("general/welcome", {
+    fullName: "heeyeon",
+  });
+
 });
 
 
