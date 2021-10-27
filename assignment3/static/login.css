@@ -18,12 +18,10 @@
   width: 400px;
   background: #E95C63;
   border-radius: 10px;
-  box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
 }
 .center h1{
   text-align: center;
   padding: 20px 0;
-  border-bottom: 1px solid silver;
 }
 .center form{
   padding: 0 40px;
@@ -31,27 +29,26 @@
 }
 form .texting_field{
   position: relative;
-  border-bottom: 2px solid #adadad;
   margin: 10px 0 30px 0;
 }
 .texting_field input{
+  border: none;
+  background: none;
+  outline: none;
   width: 100%;
   padding: 0 5px;
   height: 40px;
   font-size: 16px;
-  border: none;
-  background: none;
-  outline: none;
+
 }
 .texting_field label{
   position: absolute;
   top: 50%;
   left: 5px;
-  color: #adadad;
   transform: translateY(-50%);
   font-size: 16px;
-  pointer-events: none;
-  transition: .5s;
+
+
 }
 .texting_field span::before{
   content: '';
@@ -61,7 +58,6 @@ form .texting_field{
   width: 0%;
   height: 2px;
   background: #E95C63;
-  transition: .5s;
 }
 
 
@@ -86,8 +82,7 @@ input[type="submit"]{
   height: 50px;
   border: 1px solid;
   background: white;
-  border-radius: 20px;
-  font-family: 'Architects Daughter', cursive;
+  border-radius: 15px;
   font-size: 18px;
   color: #E95C63;
   cursor: pointer;
