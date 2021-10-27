@@ -166,7 +166,7 @@ router.get("/welcome", (req, res) => {
   //res.render("general/welcome");
 
   res.render("general/welcome", {
-    fullName: "heeyeon",
+    fullName: "",
   });
 
 });
