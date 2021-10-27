@@ -24,11 +24,19 @@
 
       </div>
 
+      {{#if validation.email}}
+      <span style="color: red; margin-left:10px">{{validation.email}}</span>
+      {{/if}}
+
       <div class="texting_field">
         <input type="text" id="password" name="password">
         <span></span>
         <label for="password">* Password</label>
       </div>
+
+      {{#if validation.password}}
+      <span style="color: red; margin-left:10px">{{validation.password}}</span>
+      {{/if}}
 
       <div class="pass">Forgot Password?</div>
       <input type="submit" value="Login">
