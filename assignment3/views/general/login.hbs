@@ -17,26 +17,26 @@
     </div>
 
     <form method="post" action="/login">
+      {{#if validation.email}}
+      <span style="color: red; margin-left:10px">{{validation.email}}</span>
+      {{/if}}
       <div class="texting_field">
-        <input type="text" id="email" name="email">
+        <input type="text" id="email" name="email" value="{{values.email}}">
         <span></span>
         <label for="email">* Email address</label>
 
       </div>
-
-      {{#if validation.email}}
-      <span style="color: red; margin-left:10px">{{validation.email}}</span>
+      {{#if validation.password}}
+      <span style="color: red; margin-left:10px">{{validation.password}}</span>
       {{/if}}
 
       <div class="texting_field">
-        <input type="text" id="password" name="password">
+        <input type="text" id="password" name="password" value="{{values.password}}">
         <span></span>
         <label for="password">* Password</label>
       </div>
 
-      {{#if validation.password}}
-      <span style="color: red; margin-left:10px">{{validation.password}}</span>
-      {{/if}}
+
 
       <div class="pass">Forgot Password?</div>
       <input type="submit" value="Login">

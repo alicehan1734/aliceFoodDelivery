@@ -53,7 +53,7 @@ router.post("/signup", (req, res) => {
   if (email.trim().length === 0) {
 
     passed = false;
-    validation.email = "Please enter your email."
+    validation.email = "Please enter your email address."
   }
   else if (!emailValid.test(email)) {
     passed = false;
@@ -131,7 +131,33 @@ router.get("/login", (req, res) => {
 
 
 router.post("/login", (req, res) => {
+  const { email, password } = req.body;
 
+  let passed = true;
+  let validation = {};
+
+  if (email.trim().length === 0) {
+
+    passed = false;
+    validation.email = "Please enter your email address."
+  }
+
+  if (password.trim().length === 0) {
+
+    passed = false;
+    validation.password = "Please enter your password."
+  }
+
+
+  if (passed) {
+    res.send("Welcome back!")
+
+  } else {
+    res.render("general/login", {
+      values: req.body,
+      validation
+    })
+  }
 });
 
 
