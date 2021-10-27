@@ -8,4 +8,4 @@ Student ID:154222194
 Course/Section:WEB322ZAA
 ## Project URLs
 GitHub Repository: https://github.com/alicehan1734/SenecaCollege_Web_workshop
-Heroku URL: https://<app_name>.herokuapp.com/
+Heroku URL: https://senecacollegewebworkshop.herokuapp.com/
