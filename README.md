@@ -5,7 +5,7 @@ copied manually or electronically from any other source
 (including web sites) or distributed to other students.
 Name:Heeyeon Han
 Student ID:154222194
-Course/Section:
+Course/Section:WEB322ZAA
 ## Project URLs
-GitHub Repository: https://github.com/<repo_name>/
+GitHub Repository: https://github.com/alicehan1734/SenecaCollege_Web_workshop
 Heroku URL: https://<app_name>.herokuapp.com/
