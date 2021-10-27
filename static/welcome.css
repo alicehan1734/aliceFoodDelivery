@@ -1,0 +1,39 @@
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+
+.container > img{
+  width: 100%;
+  margin-top: -250px;
+  height: 1000px;
+}
+
+.container >div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+}
+
+.buttonMenu {
+  background-color: white;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  color: #E95C63;
+  padding: 13px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.8;
+  transition: 0.4s;
+  display: inline-block;
+  border-radius: 10px;
+  border: 1px solid #e95c63;
+
+}
+
+.buttonMenu:hover {opacity: 1}

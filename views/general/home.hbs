@@ -1,0 +1,23 @@
+{{>hero}}
+<div class="grid">
+  <h2>HOW IT WORKS ?</h2>
+</div>
+<div class="gridmain">
+  {{#each info}}
+  {{>info this}}
+  {{else}}
+  <div>No data</div>
+  {{/each}}
+</div>
+
+<div class="topmenu">
+  <h2>Check Alice Food Top Meals</h2>
+
+  <div class="topmenugrid">
+    {{#each topMeals}}
+    {{>topMeal this}}
+    {{else}}
+    <div>No data</div>
+    {{/each}}
+  </div>
+</div>

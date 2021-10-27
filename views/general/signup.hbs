@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="signup.css">
+
+</head>
+
+<body>
+  <div class="con">
+    <div class="con-first">
+      Sign Up
+      <p>Create your account by entering your email address and choosing a password</p>
+    </div>
+
+    <form method="post" action="/signup">
+
+      {{#if validation.firstName}}
+      <span style="color: red; margin-left:10px">{{validation.firstName}}</span>
+      {{/if}}
+
+      <div class="texting_field">
+        <input type="text" id="firstName" name="firstName" value="{{values.firstName}}">
+        <span></span>
+        <label for="firstName">* First name</label>
+      </div>
+
+      {{#if validation.lastName}}
+      <span style="color: red; margin-left:10px">{{validation.lastName}}</span>
+      {{/if}}
+
+      <div class="texting_field">
+        <input type="text" id="lastName" name="lastName" value="{{values.lastName}}">
+        <span></span>
+        <label for="lastName">* Last name</label>
+      </div>
+
+      {{#if validation.email}}
+      <span style="color: red; margin-left:10px">{{validation.email}}</span>
+      {{/if}}
+      <div class="texting_field">
+        <input type="text" id="email" name="email" value="{{values.email}}">
+        <span></span>
+        <label for="email">* Email Address</label>
+      </div>
+
+
+      {{#if validation.password}}
+      <span style="color: red; margin-left:10px">{{validation.password}}</span>
+      {{/if}}
+
+      <div class="texting_field">
+        <input type="password" id="password" name="password" value="{{values.password}}">
+        <span></span>
+        <label for="password">* Password</label>
+      </div>
+
+      <input type="submit" value="Sign up today!!">
+  </div>
+
+
+  </form>
+
+  </div>
+</body>
+
+</html>

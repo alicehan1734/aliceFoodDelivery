@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="menu.css">
+
+</head>
+
+<body>
+  <div>
+    {{>hero}}
+  </div>
+  <div class="menuCon">
+    <a href="#0">Classic Meals</a>
+    <a href="#1">Dessert</a>
+    <a href="#2">Easy Prep Meals</a>
+    <a href="#3">Vegetarian Meals</a>
+    <a href="#4">Family-Style Meals</a>
+  </div>
+
+  <div class="con">
+    {{#each mealsCategory}}
+    <hr id={{@index}} />
+
+    <div class="conMenuName">{{categoryName}}</div>
+
+
+    <div class="menu">
+      {{#mealkits}}
+      {{>menuMeal this}}
+
+      {{/mealkits}}
+
+    </div>
+
+
+    {{else}}
+    <div>No data</div>
+    {{/each}}
+
+
+  </div>
+
+</body>
+
+</html>
