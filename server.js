@@ -12,6 +12,7 @@
 
 var express = require("express");
 const exphbs = require('express-handlebars');
+const sequelizeModule = require("sequelize");
 const bodyParser = require('body-parser');
 
 const dotenv = require('dotenv');
@@ -31,6 +32,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const generalController = require("./controllers/general");
 
 app.use("/", generalController);
+
+const sequelize = new sequelizeModule("d8h86e89sgssvu", "agbqrjocxjlbvt", "74c4731ec2cce056124efe51ca1c2e82a3cb0c9a0b8e3492bce753c52eed8f4e", {
+  host: "ec2-54-160-35-196.compute-1.amazonaws.com",
+  dialect: "postgres",
+  port: 5432,
+  dialectOptions: {
+    ssl: { rejectUnauthorized: false }
+  }
+});
+
+
 
 var HTTP_PORT = process.env.PORT || 8080;
 
