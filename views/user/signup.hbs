@@ -17,7 +17,7 @@
       <p>Create your account by entering your email address and choosing a password</p>
     </div>
 
-    <form method="post" action="/user/signup">
+    <form method="post" action="/user/signup" enctype="multipart/form-data">
 
       {{#if validation.firstName}}
       <span style="color: red; margin-left:10px">{{validation.firstName}}</span>
@@ -58,6 +58,15 @@
         <span></span>
         <label for="password">* Password</label>
       </div>
+
+
+      <div class="texting_field">
+        <input type="file" id="profilePic" name="profilePic" \>
+        <label for="profilePic">Picture</label>
+      </div>
+
+
+
 
       <input type="submit" value="Sign up today!!">
   </div>

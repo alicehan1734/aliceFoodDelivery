@@ -15,9 +15,17 @@
       <li><a href="#GIFT">GIFT CARD</a></li>
 
     </ul>
+
     <ul class="navbar_button">
+
+      {{#if user}}
+      <li>Hello {{user.firstName}} {{user.lastName}}!</li>
+      <a class="buttonLogin" href="/user/logout">Log out</a>
+      <img src="/profile-picture/{{user.profilePic}}" alt="{{user.firstName}}" />
+      {{else}}
       <a class="buttonLogin" href="/user/login">Log in</a>
       <a class="buttonSignup" href="/user/signup">Sign up</a>
+      {{/if}}
     </ul>
 
     <a href="#" class="navbar"><i class="fas fa-bars"></i></a>
