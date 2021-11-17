@@ -12,12 +12,12 @@
 
 var express = require("express");
 const exphbs = require('express-handlebars');
-const mongoose = require("mongoose");
 
-const sequelizeModule = require("sequelize");
+//const sequelizeModule = require("sequelize");
 const bodyParser = require('body-parser');
-
 const dotenv = require('dotenv');
+const mongoose = require('mongoose');
+
 dotenv.config({ path: "./config/keys.env" });
 
 var app = express();
@@ -32,8 +32,10 @@ app.use(express.static(__dirname + "/static"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const generalController = require("./controllers/general");
+const userController = require("./controllers/user");
 
 app.use("/", generalController);
+app.use("/user/", userController);
 
 // const sequelize = new sequelizeModule("d8h86e89sgssvu", "agbqrjocxjlbvt", "74c4731ec2cce056124efe51ca1c2e82a3cb0c9a0b8e3492bce753c52eed8f4e", {
 //   host: "ec2-54-160-35-196.compute-1.amazonaws.com",
@@ -49,19 +51,13 @@ mongoose.connect(process.env.MONGO_CONN_STRING, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
+  .then(() => {
+    console.log("Connected to the MongoDB database.")
+  })
+  .catch((err) => {
+    console.log(`There was a problem connecting to MongoDB ${err}`)
+  });
 
-const schema = mongoose.Schema;
-
-const nameSchema = new schema({
-  "firstName": String,
-  "lastName": String,
-  "email": {
-    "type": String,
-    "unique": true
-  }
-});
-
-const nameModel = mongoose.model("names", nameSchema);
 
 
 var HTTP_PORT = process.env.PORT || 8080;
