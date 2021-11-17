@@ -1,3 +1,5 @@
+const userModel = require("../models/user");
+const bcrypt = require("bcryptjs");
 var express = require("express");
 const router = express.Router();
 
@@ -49,52 +51,74 @@ router.post("/signup", (req, res) => {
   }
 
 
-
+  //if success with passed == true
   if (passed) {
 
-    const sgMail = require("@sendgrid/mail");
-    sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+    const user = new userModel({
+      firstName: firstName,
+      lastName: lastName,
+      password: password,
+      email: email
+    });
 
-    const msg = {
-      to: email,
-      from: 'hhan34@myseneca.ca',
-      subject: 'Welcome to be our Alice Food Delivery member!',
-      html:
-        `
-        Dear ${firstName} ${lastName},<br>
-        <br> 
-        Thank you for signing up to Alice Food Delivery.<br>
-        We are very happy you are one of <span style="color: #E95C63;">'Alice Food Delivery'</span> family members.<br>
-        Please be in touch us if you have any questions.<br><br>
+    user.save()
+      .then((userSaved) => {
 
-        Your sign up information,<br><br>
-
-        Your Full Name: ${firstName} ${lastName}<br>
-        Your Email Address: ${email}<br><br>
-
-        Regards,<br><br>
-        HeeYeon Han<br> 
-        <span style="color: #E95C63;">Alice Food Delivery</span><br> 
-        +1(647) 269-1734<br> 
-        (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)<br>
-        <br>
+        /*const sgMail = require("@sendgrid/mail");
+      sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+    
+      const msg = {
+        to: email,
+        from: 'hhan34@myseneca.ca',
+        subject: 'Welcome to be our Alice Food Delivery member!',
+        html:
           `
-    };
+          Dear ${firstName} ${lastName},<br>
+          <br> 
+          Thank you for signing up to Alice Food Delivery.<br>
+          We are very happy you are one of <span style="color: #E95C63;">'Alice Food Delivery'</span> family members.<br>
+          Please be in touch us if you have any questions.<br><br>
+    
+          Your sign up information,<br><br>
+    
+          Your Full Name: ${firstName} ${lastName}<br>
+          Your Email Address: ${email}<br><br>
+    
+          Regards,<br><br>
+          HeeYeon Han<br> 
+          <span style="color: #E95C63;">Alice Food Delivery</span><br> 
+          +1(647) 269-1734<br> 
+          (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)<br>
+          <br>
+            `
+      };
+    
+      sgMail.send(msg)
+        .then(() => {
+          res.render("user/welcome", {
+            fullName: `${firstName} ${lastName}`,
+          });
+        })
+        .catch(err => {
+          console.log(`Error ${err}`);
+    
+          res.render("user/signup", {
+            values: req.body,
+            validation
+          });
+        });*/
 
-    sgMail.send(msg)
-      .then(() => {
-        res.render("user/welcome", {
-          fullName: `${firstName} ${lastName}`,
-        });
+        console.log(`User ${userSaved.firstName} has been added to the database.`);
+        res.redirect("/");
+
       })
-      .catch(err => {
-        console.log(`Error ${err}`);
-
-        res.render("user/signup", {
-          values: req.body,
-          validation
-        });
+      .catch((err) => {
+        console.log(`Error adding user to the database ... ${err}`);
+        res.redirect("/");
       });
+
+
+
 
   } else {
     res.render("user/signup", {
@@ -115,6 +139,7 @@ router.post("/login", (req, res) => {
 
   let passed = true;
   let validation = {};
+  let errors = [];
 
   if (email.trim().length === 0) {
 
@@ -130,7 +155,59 @@ router.post("/login", (req, res) => {
 
 
   if (passed) {
-    res.send("Welcome back!")
+
+    userModel.findOne({
+      email: email
+    })
+      .then(user => {
+        if (user) {
+
+          bcrypt.compare(password, user.password)
+            .then(isMatched => {
+
+              if (isMatched) {
+
+                res.redirect("/");
+              }
+              else {
+                console.log("Passwords do not match.");
+                errors.push("Sorry, your password does not match our database.");
+
+                res.render("user/login", {
+                  errors
+                });
+              }
+            })
+            .catch(err => {
+
+              console.log(`Unable to compare passwords ... ${err}`);
+              errors.push("Oops, something went wrong.");
+
+              res.render("user/login", {
+                errors
+              });
+            });
+
+        }
+        else {
+
+          console.log("User not found in the database.");
+          errors.push("Email not found in the database.");
+
+          res.render("user/login", {
+            errors
+          });
+        }
+      })
+      .catch(err => {
+
+        console.log(`Error finding the user in the database ... ${err}`);
+        errors.push("Oops, something went wrong.");
+
+        res.render("user/login", {
+          errors
+        });
+      });
 
   } else {
     res.render("user/login", {

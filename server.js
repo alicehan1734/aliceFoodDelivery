@@ -12,6 +12,7 @@
 
 var express = require("express");
 const exphbs = require('express-handlebars');
+const session = require("express-session");
 
 //const sequelizeModule = require("sequelize");
 const bodyParser = require('body-parser');
@@ -30,9 +31,14 @@ app.engine('.hbs', exphbs({
 app.set('view engine', '.hbs');
 app.use(express.static(__dirname + "/static"));
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(session({
+  secret: "Secret_key",
+  resave: setRandomFallback,
+  saveUninitialized: true
+}))
 const generalController = require("./controllers/general");
 const userController = require("./controllers/user");
+const { setRandomFallback } = require('bcryptjs');
 
 app.use("/", generalController);
 app.use("/user/", userController);

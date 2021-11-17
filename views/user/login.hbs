@@ -15,8 +15,13 @@
     <div class="con-first">
       Welcome back !!!
     </div>
+    <div>
+      {{#each errors}}
+      <p style="color: red">{{this}}</p>
+      {{/each}}
+    </div>
 
-    <form method="post" action="/login">
+    <form method="post" action="/user/login">
       {{#if validation.email}}
       <span style="color: red; margin-left:10px">{{validation.email}}</span>
       {{/if}}
@@ -36,11 +41,9 @@
         <label for="password">* Password</label>
       </div>
 
-
-
       <div class="pass">Forgot Password?</div>
       <input type="submit" value="Login">
-      <div class="signup_link"> Not a client yet? <a href="user/signup">Signup here</a>
+      <div class="signup_link"> Not a client yet? <a href="/user/signup">Signup here</a>
       </div>
 
 
