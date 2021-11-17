@@ -12,6 +12,8 @@
 
 var express = require("express");
 const exphbs = require('express-handlebars');
+const mongoose = require("mongoose");
+
 const sequelizeModule = require("sequelize");
 const bodyParser = require('body-parser');
 
@@ -33,15 +35,33 @@ const generalController = require("./controllers/general");
 
 app.use("/", generalController);
 
-const sequelize = new sequelizeModule("d8h86e89sgssvu", "agbqrjocxjlbvt", "74c4731ec2cce056124efe51ca1c2e82a3cb0c9a0b8e3492bce753c52eed8f4e", {
-  host: "ec2-54-160-35-196.compute-1.amazonaws.com",
-  dialect: "postgres",
-  port: 5432,
-  dialectOptions: {
-    ssl: { rejectUnauthorized: false }
+// const sequelize = new sequelizeModule("d8h86e89sgssvu", "agbqrjocxjlbvt", "74c4731ec2cce056124efe51ca1c2e82a3cb0c9a0b8e3492bce753c52eed8f4e", {
+//   host: "ec2-54-160-35-196.compute-1.amazonaws.com",
+//   dialect: "postgres",
+//   port: 5432,
+//   dialectOptions: {
+//     ssl: { rejectUnauthorized: false }
+//   }
+// });
+
+
+mongoose.connect(process.env.MONGO_CONN_STRING, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+
+const schema = mongoose.Schema;
+
+const nameSchema = new schema({
+  "firstName": String,
+  "lastName": String,
+  "email": {
+    "type": String,
+    "unique": true
   }
 });
 
+const nameModel = mongoose.model("names", nameSchema);
 
 
 var HTTP_PORT = process.env.PORT || 8080;
