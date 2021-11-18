@@ -59,7 +59,10 @@
 
       </div>
 
-      <div class="pass">Forgot Password?</div>
+      <div class="pass"> {{#each passwordErr}}
+        <span>{{this}}</span>
+        {{/each}}Forgot Password?
+      </div>
 
       <div style="text-align:center">
         {{#each errors}}

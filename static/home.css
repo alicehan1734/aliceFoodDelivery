@@ -297,6 +297,23 @@ footer > p {
   color: #E95C63;
   padding-top: 10px;
 }
+
+
+.errorCon{
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align-last: center;
+}
+
+.errorCon > div:first-child{
+  font-size: 100px;
+}
+
+.errorCon > div:last-child{
+  font-size: 30px;
+}
+
+
 @media screen and (max-width : 1000px) {
   .gridmain {
     flex-direction: column;
@@ -334,7 +351,8 @@ footer > p {
 }
 
 .navbar_button.active,
-.navbar_menu.active {
+.navbar_menu.active,
+.navbar_name.active {
   display: flex;
 
 }
@@ -361,4 +379,17 @@ footer >div {
   padding: 0;
   padding: 2vw
 }
+
+.errorCon{
+  padding-top: 20px;
+}
+
+.errorCon > div:first-child{
+  font-size: 50px;
+}
+.errorCon > div:last-child{
+  font-size: 15px;
+}
+
+
 }

@@ -16,17 +16,26 @@
 
     </ul>
 
-    <ul class="navbar_button">
 
-      {{#if user}}
-      <li style="margin-right: 20px;">Hello {{user.firstName}} {{user.lastName}}!</li>
-      <a class="buttonLogin" href="/user/logout">Log out</a>
-      {{!-- <img src="/profile-picture/{{user.profilePic}}" alt="{{user.firstName}}" /> --}}
-      {{else}}
+    {{#if user}}
+    <ul class="navbar_name">
+      <li>👋 Hello, {{user.firstName}} {{user.lastName}}!</li>
+    </ul>
+
+    <ul class="navbar_button">
+      <a class="buttonLogin" href="/user/dashboard">DashBoard</a>
+      <a class="buttonSignup" href="/user/logout">Log out</a>
+    </ul>
+
+    {{!-- <img src="/profile-picture/{{user.profilePic}}" alt="{{user.firstName}}" /> --}}
+    {{else}}
+
+    <ul class="navbar_button">
       <a class="buttonLogin" href="/user/login">Log in</a>
       <a class="buttonSignup" href="/user/signup">Sign up</a>
-      {{/if}}
     </ul>
+
+    {{/if}}
 
     <a href="#" class="navbar"><i class="fas fa-bars"></i></a>
   </div>

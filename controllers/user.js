@@ -145,25 +145,25 @@ router.post("/signup", (req, res) => {
 
         console.log(`User ${userSaved.firstName} has been added to the database.`);
 
-        let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.profilePic.name).ext}`;
+        // let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.profilePic.name).ext}`;
 
-        req.files.profilePic.mv(`public/profile-picture/${uniqueName}`)
-          .then(() => {
-            userModel.updateOne({
-              _id: userSaved._id
-            }, {
-              profilePic: uniqueName
-            })
-              .then(() => {
-                console.log(userSaved._id);
-                console.log("User document was updated with the profile picture.");
-                res.redirect("/");
-              })
-              .catch(err => {
-                console.log(`Error updating the user's profile picture ... ${err}`);
-                res.redirect("/");
-              })
-          });
+        // req.files.profilePic.mv(`public/profile-picture/${uniqueName}`)
+        //   .then(() => {
+        //     userModel.updateOne({
+        //       _id: userSaved._id
+        //     }, {
+        //       profilePic: uniqueName
+        //     })
+        //       .then(() => {
+        //         console.log(userSaved._id);
+        //         console.log("User document was updated with the profile picture.");
+        //         res.redirect("/");
+        //       })
+        //       .catch(err => {
+        //         console.log(`Error updating the user's profile picture ... ${err}`);
+        //         res.redirect("/");
+        //       })
+        //   });
 
 
       })
@@ -192,6 +192,7 @@ router.post("/login", (req, res) => {
   let passed = true;
   let validation = {};
   let errors = [];
+  let passwordErr = [];
 
   console.log(req.body);
 
@@ -228,21 +229,26 @@ router.post("/login", (req, res) => {
                 if (!req.session.isClerk) {
 
                   console.log("user is customer")
+                  res.redirect("/user/customer/dashboard");
 
                 } else {
                   console.log("user is clerk")
+                  res.redirect("/user/clerk/dashboard");
 
                 }
 
-                res.redirect("/");
+                //res.redirect("/");
               }
               else {
                 console.log("Passwords do not match.");
-                //errors.push("Wrong passord. Try again or click Forgot password to reset it. ");
-                errors.push("Sorry, you entered an invalid email and/or password");
+                errors.push("Wrong passord. Try again or click Forgot password to reset it. 💁 ");
+                //errors.push("Sorry, you entered an invalid email and/or password");
+
+                passwordErr.push("😏👉")
 
                 res.render("user/login", {
-                  errors
+                  errors,
+                  passwordErr
                 });
               }
             })
@@ -260,8 +266,9 @@ router.post("/login", (req, res) => {
         else {
 
           console.log("User not found in the database.");
-          //errors.push("Couldn't find your Account");
-          errors.push("Sorry, you entered an invalid email and/or password");
+          errors.push("Couldn't find your Account 🙅");
+
+          //errors.push("Sorry, you entered an invalid email and/or password");
 
           res.render("user/login", {
             errors
@@ -312,12 +319,7 @@ router.get("/logout", (req, res) => {
 
 })
 
-
-
-//logout and destroy session / clear the session from memory 
 router.get("/dashboard", (req, res) => {
-
-  console.log(req.session.isClerk)
 
   if (req.session.isClerk == undefined) {
     res.render("general/error");
@@ -330,6 +332,46 @@ router.get("/dashboard", (req, res) => {
 
     } else {
       //customer dashboard
+      res.render("user/customer/customerDashboard");
+    }
+  }
+
+})
+
+
+//logout and destroy session / clear the session from memory 
+router.get("/clerk/dashboard", (req, res) => {
+
+  if (req.session.isClerk == undefined) {
+    res.render("general/error");
+
+  } else {
+    if (req.session.isClerk) {
+      // clerk dashboard
+
+      res.render("user/clerk/clerkDashboard");
+
+    } else {
+      //customer dashboard
+      res.render("general/error");
+    }
+  }
+
+})
+
+//logout and destroy session / clear the session from memory 
+router.get("/customer/dashboard", (req, res) => {
+
+  if (req.session.isClerk == undefined) {
+    res.render("general/error");
+
+  } else {
+    if (req.session.isClerk) {
+      // clerk dashboard
+      res.render("general/error");
+
+    } else {
+      //customer dashboard
 
       res.render("user/customer/customerDashboard");
 
@@ -337,4 +379,6 @@ router.get("/dashboard", (req, res) => {
   }
 
 })
+
+
 module.exports = router;
