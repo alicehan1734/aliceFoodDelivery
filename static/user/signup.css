@@ -8,6 +8,7 @@
 .con-first {
   text-align: center;
   font-size: 25px;
+  margin-bottom: 20px;
 }
 .con-first > p{
   font-size: 15px;

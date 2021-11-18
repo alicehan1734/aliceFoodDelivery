@@ -54,6 +54,37 @@ router.post("/signup", (req, res) => {
   //if success with passed == true
   if (passed) {
 
+
+    userModel.findOne({
+      email: email
+    })
+      .then(user => {
+
+
+        if (user == null) {
+          console.log(`Email is not existed`);
+
+        } else {
+          validation.email = "Email already used. Please choose a different email"
+
+          res.render("user/signup", {
+            values: req.body,
+            validation
+          })
+
+          return;
+
+        }
+
+      })
+      .catch(err => {
+
+        console.log(`We don't have matched email yet, ${err}`);
+
+        return;
+
+      });
+
     const user = new userModel({
       firstName: firstName,
       lastName: lastName,
@@ -61,103 +92,85 @@ router.post("/signup", (req, res) => {
       email: email
     });
 
-    userModel.findOne({
-      email: email
-    })
-      .then(user => {
+    user.save()
+      .then((userSaved) => {
 
-        console.log(`Email is existed ${user}`);
-        validation.email = ""
+        const sgMail = require("@sendgrid/mail");
+        sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
 
-        res.render("user/signup", {
-          values: req.body,
-          validation
-        })
+        const msg = {
+          to: email,
+          from: 'hhan34@myseneca.ca',
+          subject: 'Welcome to be our Alice Food Delivery member!',
+          html:
+            `
+          Dear ${firstName} ${lastName},<br>
+          <br> 
+          Thank you for signing up to Alice Food Delivery.<br>
+          We are very happy you are one of <span style="color: #E95C63;">'Alice Food Delivery'</span> family members.<br>
+          Please be in touch us if you have any questions.<br><br>
+    
+          Your sign up information,<br><br>
+    
+          Your Full Name: ${firstName} ${lastName}<br>
+          Your Email Address: ${email}<br><br>
+    
+          Regards,<br><br>
+          HeeYeon Han<br> 
+          <span style="color: #E95C63;">Alice Food Delivery</span><br> 
+          +1(647) 269-1734<br> 
+          (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)<br>
+          <br>
+            `
+        };
 
-      })
-      .catch(err => {
+        sgMail.send(msg)
+          .then(() => {
 
-        console.log(`We don't have matched email yet, ${err}`);
-
-        user.save()
-          .then((userSaved) => {
-
-            /*const sgMail = require("@sendgrid/mail");
-          sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-        
-          const msg = {
-            to: email,
-            from: 'hhan34@myseneca.ca',
-            subject: 'Welcome to be our Alice Food Delivery member!',
-            html:
-              `
-              Dear ${firstName} ${lastName},<br>
-              <br> 
-              Thank you for signing up to Alice Food Delivery.<br>
-              We are very happy you are one of <span style="color: #E95C63;">'Alice Food Delivery'</span> family members.<br>
-              Please be in touch us if you have any questions.<br><br>
-        
-              Your sign up information,<br><br>
-        
-              Your Full Name: ${firstName} ${lastName}<br>
-              Your Email Address: ${email}<br><br>
-        
-              Regards,<br><br>
-              HeeYeon Han<br> 
-              <span style="color: #E95C63;">Alice Food Delivery</span><br> 
-              +1(647) 269-1734<br> 
-              (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)<br>
-              <br>
-                `
-          };
-        
-          sgMail.send(msg)
-            .then(() => {
-              res.render("user/welcome", {
-                fullName: `${firstName} ${lastName}`,
-              });
-            })
-            .catch(err => {
-              console.log(`Error ${err}`);
-        
-              res.render("user/signup", {
-                values: req.body,
-                validation
-              });
-            });*/
-            console.log(`User ${userSaved.firstName} has been added to the database.`);
-
-            let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.profilePic.name).ext}`;
-
-            req.files.profilePic.mv(`public/profile-picture/${uniqueName}`)
-              .then(() => {
-                userModel.updateOne({
-                  _id: userSaved._id
-                }, {
-                  profilePic: uniqueName
-                })
-                  .then(() => {
-                    console.log(userSaved._id);
-                    console.log("User document was updated with the profile picture.");
-                    res.redirect("/");
-                  })
-                  .catch(err => {
-                    console.log(`Error updating the user's profile picture ... ${err}`);
-                    res.redirect("/");
-                  })
-              });
-
+            //welcome page 
+            res.render("user/welcome", {
+              fullName: `${firstName} ${lastName}`,
+            });
 
           })
-          .catch((err) => {
-            console.log(`Error adding user to the database ... ${err}`);
-            res.redirect("/");
+          .catch(err => {
+            console.log(`Error ${err}`);
+
+            res.render("user/signup", {
+              values: req.body,
+              validation
+            });
           });
 
+
+        console.log(`User ${userSaved.firstName} has been added to the database.`);
+
+        let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.profilePic.name).ext}`;
+
+        req.files.profilePic.mv(`public/profile-picture/${uniqueName}`)
+          .then(() => {
+            userModel.updateOne({
+              _id: userSaved._id
+            }, {
+              profilePic: uniqueName
+            })
+              .then(() => {
+                console.log(userSaved._id);
+                console.log("User document was updated with the profile picture.");
+                res.redirect("/");
+              })
+              .catch(err => {
+                console.log(`Error updating the user's profile picture ... ${err}`);
+                res.redirect("/");
+              })
+          });
+
+
+      })
+      .catch((err) => {
+        console.log(`Error adding user to the database ... ${err}`);
+        res.redirect("/");
       });
-
-
-
 
   } else {
     res.render("user/signup", {
@@ -174,11 +187,13 @@ router.get("/login", (req, res) => {
 
 
 router.post("/login", (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, radio } = req.body;
 
   let passed = true;
   let validation = {};
   let errors = [];
+
+  console.log(req.body);
 
   if (email.trim().length === 0) {
 
@@ -208,19 +223,23 @@ router.post("/login", (req, res) => {
 
                 req.session.user = user;
 
-                // req.session.isClerk = req.body.loginType === "clerk";
+                req.session.isClerk = radio === "clerk";
 
-                // if (!req.session.isClerk) {
+                if (!req.session.isClerk) {
 
-                // } else {
+                  console.log("user is customer")
 
-                // }
+                } else {
+                  console.log("user is clerk")
+
+                }
 
                 res.redirect("/");
               }
               else {
                 console.log("Passwords do not match.");
-                errors.push("Sorry, your password does not match our database.");
+                //errors.push("Wrong passord. Try again or click Forgot password to reset it. ");
+                errors.push("Sorry, you entered an invalid email and/or password");
 
                 res.render("user/login", {
                   errors
@@ -241,7 +260,8 @@ router.post("/login", (req, res) => {
         else {
 
           console.log("User not found in the database.");
-          errors.push("Email not found in the database.");
+          //errors.push("Couldn't find your Account");
+          errors.push("Sorry, you entered an invalid email and/or password");
 
           res.render("user/login", {
             errors
@@ -270,11 +290,18 @@ router.post("/login", (req, res) => {
 
 router.get("/welcome", (req, res) => {
 
-  res.render("user/welcome", {
+  res.render("/user/welcome", {
     fullName: "",
   });
 
 });
+
+router.get("/password", (req, res) => {
+
+  res.render("user/password");
+
+});
+
 
 
 //logout and destroy session / clear the session from memory 
@@ -285,4 +312,29 @@ router.get("/logout", (req, res) => {
 
 })
 
+
+
+//logout and destroy session / clear the session from memory 
+router.get("/dashboard", (req, res) => {
+
+  console.log(req.session.isClerk)
+
+  if (req.session.isClerk == undefined) {
+    res.render("general/error");
+
+  } else {
+    if (req.session.isClerk) {
+      // clerk dashboard
+
+      res.render("user/clerk/clerkDashboard");
+
+    } else {
+      //customer dashboard
+
+      res.render("user/customer/customerDashboard");
+
+    }
+  }
+
+})
 module.exports = router;

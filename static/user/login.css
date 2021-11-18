@@ -7,8 +7,9 @@
 .con-first {
   text-align: center;
   font-size: 25px;
-}
+  margin-bottom: 20px;
 
+}
 
 .center{
   position: absolute;
@@ -19,6 +20,7 @@
   background: #E95C63;
   border-radius: 10px;
 }
+
 .center h1{
   text-align: center;
   padding: 20px 0;
