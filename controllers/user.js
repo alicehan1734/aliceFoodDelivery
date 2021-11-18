@@ -61,79 +61,99 @@ router.post("/signup", (req, res) => {
       email: email
     });
 
-    user.save()
-      .then((userSaved) => {
+    userModel.findOne({
+      email: email
+    })
+      .then(user => {
 
-        /*const sgMail = require("@sendgrid/mail");
-      sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-    
-      const msg = {
-        to: email,
-        from: 'hhan34@myseneca.ca',
-        subject: 'Welcome to be our Alice Food Delivery member!',
-        html:
-          `
-          Dear ${firstName} ${lastName},<br>
-          <br> 
-          Thank you for signing up to Alice Food Delivery.<br>
-          We are very happy you are one of <span style="color: #E95C63;">'Alice Food Delivery'</span> family members.<br>
-          Please be in touch us if you have any questions.<br><br>
-    
-          Your sign up information,<br><br>
-    
-          Your Full Name: ${firstName} ${lastName}<br>
-          Your Email Address: ${email}<br><br>
-    
-          Regards,<br><br>
-          HeeYeon Han<br> 
-          <span style="color: #E95C63;">Alice Food Delivery</span><br> 
-          +1(647) 269-1734<br> 
-          (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)<br>
-          <br>
-            `
-      };
-    
-      sgMail.send(msg)
-        .then(() => {
-          res.render("user/welcome", {
-            fullName: `${firstName} ${lastName}`,
-          });
+        console.log(`Email is existed ${user}`);
+        validation.email = ""
+
+        res.render("user/signup", {
+          values: req.body,
+          validation
         })
-        .catch(err => {
-          console.log(`Error ${err}`);
-    
-          res.render("user/signup", {
-            values: req.body,
-            validation
-          });
-        });*/
-        console.log(`User ${userSaved.firstName} has been added to the database.`);
-
-        let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.profilePic.name).ext}`;
-
-        req.files.profilePic.mv(`public/profile-picture/${uniqueName}`)
-          .then(() => {
-            userModel.updateOne({
-              _id: userSaved._id
-            }, {
-              profilePic: uniqueName
-            })
-              .then(() => {
-                console.log(userSaved._id);
-                console.log("User document was updated with the profile picture.");
-                res.redirect("/");
-              })
-              .catch(err => {
-                console.log(`Error updating the user's profile picture ... ${err}`);
-                res.redirect("/");
-              })
-          });
-
 
       })
-      .catch((err) => {
-        console.log(`Error adding user to the database ... ${err}`);
-        res.redirect("/");
+      .catch(err => {
+
+        console.log(`We don't have matched email yet, ${err}`);
+
+        user.save()
+          .then((userSaved) => {
+
+            /*const sgMail = require("@sendgrid/mail");
+          sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+        
+          const msg = {
+            to: email,
+            from: 'hhan34@myseneca.ca',
+            subject: 'Welcome to be our Alice Food Delivery member!',
+            html:
+              `
+              Dear ${firstName} ${lastName},<br>
+              <br> 
+              Thank you for signing up to Alice Food Delivery.<br>
+              We are very happy you are one of <span style="color: #E95C63;">'Alice Food Delivery'</span> family members.<br>
+              Please be in touch us if you have any questions.<br><br>
+        
+              Your sign up information,<br><br>
+        
+              Your Full Name: ${firstName} ${lastName}<br>
+              Your Email Address: ${email}<br><br>
+        
+              Regards,<br><br>
+              HeeYeon Han<br> 
+              <span style="color: #E95C63;">Alice Food Delivery</span><br> 
+              +1(647) 269-1734<br> 
+              (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)<br>
+              <br>
+                `
+          };
+        
+          sgMail.send(msg)
+            .then(() => {
+              res.render("user/welcome", {
+                fullName: `${firstName} ${lastName}`,
+              });
+            })
+            .catch(err => {
+              console.log(`Error ${err}`);
+        
+              res.render("user/signup", {
+                values: req.body,
+                validation
+              });
+            });*/
+            console.log(`User ${userSaved.firstName} has been added to the database.`);
+
+            let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.profilePic.name).ext}`;
+
+            req.files.profilePic.mv(`public/profile-picture/${uniqueName}`)
+              .then(() => {
+                userModel.updateOne({
+                  _id: userSaved._id
+                }, {
+                  profilePic: uniqueName
+                })
+                  .then(() => {
+                    console.log(userSaved._id);
+                    console.log("User document was updated with the profile picture.");
+                    res.redirect("/");
+                  })
+                  .catch(err => {
+                    console.log(`Error updating the user's profile picture ... ${err}`);
+                    res.redirect("/");
+                  })
+              });
+
+
+          })
+          .catch((err) => {
+            console.log(`Error adding user to the database ... ${err}`);
+            res.redirect("/");
+          });
+
       });
 
 

@@ -113,3 +113,71 @@ input[type="submit"]:hover{
 .signup_link a:hover{
   text-decoration: underline;
 }
+
+.container {
+  /* background-color: white; */
+  height: 50px;
+  width: 300px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.customer {
+  display: block;
+  height: 100px;
+  width: 150px;
+  background-size: 150px 100px;
+  background:linear-gradient(
+    to bottom,
+    white 0,white 50px,
+    #E95C63 90px, #E95C63 100px
+    );
+  position: absolute;
+  top:0;
+  transition: 0.3s;
+  color: #E95C63;
+}
+
+.clerk{
+  display: block;
+  height: 100px;
+  width: 150px;
+  background-size: 150px 100px;
+  background:linear-gradient(
+    to bottom,
+    white 0,white 50px,
+    #E95C63 90px, #E95C63 100px
+    );
+  position: absolute;
+  top:0;
+  transition: 0.3s;
+  color: #E95C63;
+}
+input:checked + label {
+  background-position: 0 -50px;
+  color: white;
+  transition: 0.5s;
+}
+
+.clerk {
+  right: 0;
+}
+
+.clerk > span {
+  display: flex;
+  height: 50px;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+}
+.customer > span {
+  display: flex;
+  height: 50px;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+}

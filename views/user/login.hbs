@@ -15,6 +15,9 @@
     <div class="con-first">
       Welcome back !!!
     </div>
+
+
+
     <div>
       {{#each errors}}
       <p style="color: red">{{this}}</p>
@@ -39,6 +42,27 @@
         <input type="password" id="password" name="password" value="{{values.password}}">
         <span></span>
         <label for="password">* Password</label>
+      </div>
+
+      <div>
+        <span style="color: red; margin-left:10px">asdfsdf</span>
+
+        <div>
+
+          <label for="password" style="color: #E95C63">* I am a </label>
+        </div>
+
+        <div class="container">
+          <input type="radio" name="radio" id="customer" checked="checked">
+          <label for="customer" class="customer">
+            <span> Customer 👩 </span>
+          </label>
+          <input type="radio" name="radio" id="clerk">
+          <label for="clerk" class="clerk">
+            <span> Data Entry Clerk 👩‍🍳 </span>
+          </label>
+        </div>
+
       </div>
 
       <div class="pass">Forgot Password?</div>
