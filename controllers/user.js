@@ -248,7 +248,9 @@ router.post("/login", (req, res) => {
 
                 res.render("user/login", {
                   errors,
-                  passwordErr
+                  passwordErr,
+                  values: req.body,
+
                 });
               }
             })
@@ -258,6 +260,7 @@ router.post("/login", (req, res) => {
               errors.push("Oops, something went wrong.");
 
               res.render("user/login", {
+                values: req.body,
                 errors
               });
             });
@@ -271,6 +274,7 @@ router.post("/login", (req, res) => {
           //errors.push("Sorry, you entered an invalid email and/or password");
 
           res.render("user/login", {
+            values: req.body,
             errors
           });
         }

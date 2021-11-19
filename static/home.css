@@ -313,8 +313,76 @@ footer > p {
   font-size: 30px;
 }
 
+.dashCon {
+  padding-top: 80px;
+  text-align-last: center;
+  padding-bottom: 40px;
+  font-family: 'Architects Daughter', cursive;
 
+}
+
+.dashCon > img{
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid #CFCFCF;
+
+}
+.dashCon >div {
+  text-align: center;
+  margin: 10px;
+}
+
+
+.dashCon >div  >div{
+  margin: 10px;
+}
+.dashCon >div >div:first-child{
+  padding: 10px;
+  display: inline-block;
+  border-radius: 2px;
+  color: white;
+}
+.custom-shape-divider-top-1637275008 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1637275008 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 500px;
+  transform: rotateY(180deg);
+  z-index: -2;
+}
+
+.custom-shape-divider-top-1637275008 .shape-fill {
+  fill: #FF6464;
+}
 @media screen and (max-width : 1000px) {
+
+
+  .custom-shape-divider-top-1637275008 svg {
+    width: calc(179% + 1.3px);
+    height: 302px;
+}
+
+  .dashCon > img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #CFCFCF;
+  }
+
+  .dashCon >div >div:first-child{
+    padding: 5px;
+  }
+  
   .gridmain {
     flex-direction: column;
   }
