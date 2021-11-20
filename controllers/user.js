@@ -166,6 +166,7 @@ router.post("/signup", (req, res) => {
         //   });
 
 
+
       })
       .catch((err) => {
         console.log(`Error adding user to the database ... ${err}`);
