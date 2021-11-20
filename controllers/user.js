@@ -79,7 +79,6 @@ router.post("/signup", (req, res) => {
       })
       .catch(err => {
 
-        console.log(`We don't have matched email yet, ${err}`);
 
         return;
 
@@ -164,8 +163,6 @@ router.post("/signup", (req, res) => {
         //         res.redirect("/");
         //       })
         //   });
-
-
 
       })
       .catch((err) => {
@@ -315,6 +312,142 @@ router.get("/password", (req, res) => {
 });
 
 
+router.post("/password", (req, res) => {
+  const { email, validationCode, newPw, verifyPw } = req.body;
+
+  let passed = true;
+  let validation = {};
+
+  if (validationCode == undefined) {
+    userModel.findOne({
+      email: email
+    })
+      .then(user => {
+
+        if (user) {
+          validation.email = "the validation code be sent.. Please check mail box !"
+          validation.emailCheck = true;
+
+          //email change
+          req.session.changeEmail = email;
+
+          //generate random code 
+          let code = (Math.random() + 1).toString(5).substring(2);
+          req.session.changeEmailCode = code;
+
+          const sgMail = require("@sendgrid/mail");
+          sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+
+          const msg = {
+            to: email,
+            from: 'hhan34@myseneca.ca',
+            subject: 'Email Verification sent by Alice Food Delivery',
+            html:
+              `
+            Dear Customer,<br>
+            <br> 
+            Here is your verification email.<br><br>
+            The code is ${code}<br><br>
+      
+            Regards,<br><br>
+            HeeYeon Han<br> 
+            <span style="color: #E95C63;">Alice Food Delivery</span><br> 
+            +1(647) 269-1734<br> 
+            (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)<br>
+            <br>
+              `
+          };
+
+          sgMail.send(msg)
+            .then(() => {
+
+              res.render("user/password", {
+                values: req.body,
+                validation
+              })
+
+              return;
+            })
+            .catch(err => {
+              console.log(`Error ${err}`);
+
+              res.render("user/signup", {
+                values: req.body,
+                validation
+              });
+            });
+
+
+
+        } else {
+          validation.email = "Email's not existed.. "
+
+          res.render("user/password", {
+            values: req.body,
+            validation
+          })
+
+          return;
+        }
+      })
+      .catch(err => {
+
+        console.log(`We don't have matched email yet, ${err}`);
+
+        return;
+
+      });
+  } else {
+    validation.emailCheck = true;
+
+    var passwordValid = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,12}$/;
+
+    if (!(newPw && verifyPw && validationCode)) {
+      validation.email = "Please fill it in the form."
+
+    } else {
+
+      if (!passwordValid.test(newPw)) {
+        validation.password = "Please enter a valid password  between 6 to 12 characters (It should cotain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character.) "
+
+      } else {
+        if (newPw != verifyPw) {
+          validation.email = "New Password and Verify password are not matched together."
+        } else {
+
+          if (validationCode != req.session.changeEmailCode) {
+            validation.email = "Validation code is different. Please check email again."
+          } else {
+
+            //success at all 
+
+            var query = { 'email': req.session.changeEmail };
+
+            userModel.updateOne(query, { 'password': validation.password }, { upsert: true }, function (err, doc) {
+              if (err) return res.send(500, { error: err });
+              console.log("success");
+
+              return res.send('Succesfully saved.');
+            });
+
+
+
+          }
+        }
+      }
+
+    }
+
+    res.render("user/password", {
+      values: req.body,
+      validation
+    })
+
+
+  }
+
+
+});
 
 //logout and destroy session / clear the session from memory 
 router.get("/logout", (req, res) => {

@@ -74,10 +74,22 @@ form .texting_field{
 .texting_field input:valid ~ span::before{
   width: 100%;
 }
+
 .pass{
   margin: -5px 0 20px 5px;
   color: #a6a6a6;
   cursor: pointer;
+
+}
+
+.pass > a {
+  text-decoration: none;
+  color: #a6a6a6;
+
+}
+
+.pass > a:hover{
+  color: #E95C63;
 }
 input[type="submit"]{
   width: 100%;
