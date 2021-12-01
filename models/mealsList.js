@@ -43,10 +43,6 @@ const mealSchema = new schema({
     type: Boolean,
     required: true
   },
-  top: {
-    type: String,
-    required: true
-  },
   dataCreated: {
     type: Date,
     default: Date.now()
@@ -75,25 +71,25 @@ var meals = [
 ];
 
 
-module.exports.getAllMeals = function () {
-  return meals;
+// module.exports.getAllMeals = function () {
+//   return meals;
 
-};
+// };
 
-module.exports.getTopMeals = function () {
-  var filtered = [];
+// module.exports.getTopMeals = function () {
+//   var filtered = [];
 
 
-  for (var i = 0; i < meals.length; i++) {
+//   for (var i = 0; i < meals.length; i++) {
 
-    if (meals[i].top) {
-      filtered.push(meals[i]);
-    }
+//     if (meals[i].top) {
+//       filtered.push(meals[i]);
+//     }
 
-  }
+//   }
 
-  return filtered;
-}
+//   return filtered;
+// }
 
 // const getMeals = function (cat) {
 //   var filtered = {
@@ -110,45 +106,42 @@ module.exports.getTopMeals = function () {
 //   }
 
 //   return filtered;
+// // }
+
+// let categories = [];
+
+// module.exports.getSeperateMeals = function () {
+
+
+//   mealModel.find().then(data => {
+
+//     for (i = 0; i < data.length; i++) {
+
+//       let currentThing = data[i];
+//       let categoryName = currentThing.category;
+
+//       let category = categories.find(c => c.categoryName == categoryName);
+
+
+//       if (!category) {
+//         category = {
+//           categoryName: categoryName,
+//           mealkits: []
+//         };
+
+//         categories.push(category);
+//       }
+
+
+//       category.mealkits.push(currentThing);
+//     }
+
+//     console.log("Inside - mealList", categories);
+
+//     return categories;
+
+//   })
+
+//   console.log("Outside - mealList", categories);
+
 // }
-
-
-module.exports.getSeperateMeals = function () {
-
-
-  mealModel.find({}).then(data => {
-    let categories = [];
-
-    for (i = 0; i < data.length; i++) {
-
-      let currentThing = data[i];
-      let categoryName = currentThing.category;
-
-      let category = categories.find(c => c.categoryName == categoryName);
-
-
-      if (!category) {
-        category = {
-          categoryName: categoryName,
-          mealkits: []
-        };
-
-        categories.push(category);
-      }
-
-
-      category.mealkits.push(currentThing);
-    }
-
-    console.log("mealList", categories);
-
-    return categories;
-
-  })
-
-
-
-
-
-
-}

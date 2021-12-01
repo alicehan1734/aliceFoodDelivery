@@ -1,28 +1,71 @@
 const mealsModel = require('../models/mealsList.js')
 const infoModel = require('../models/infoList.js')
 
-
 var express = require("express");
 const router = express.Router();
 
 
 router.get("/", (req, res) => {
 
-  res.render("general/home", {
-    topMeals: mealsModel.getTopMeals(),
-    info: infoModel.getAllinfo()
-  });
+  let filtered = [];
+
+  mealsModel.find().lean().then(data => {
+
+    for (i = 0; i < data.length; i++) {
+      if (data[i].top) {
+        console.log(data[i].top)
+        filtered.push(data[i]);
+      }
+    }
+
+    console.log(filtered);
+
+    res.render("general/home", {
+      topMeals: data,
+      info: infoModel.getAllinfo()
+    });
+
+  })
 
 });
 
+
 router.get("/menu", (req, res) => {
 
-  console.log("general", mealsModel.getSeperateMeals());
+  let categories = [];
+
+  // console.log("general", mealsModel.getSeperateMeals());
+  mealsModel.find().lean().then(data => {
+
+    for (i = 0; i < data.length; i++) {
+
+      let currentThing = data[i];
+      let categoryName = currentThing.category;
+
+      let category = categories.find(c => c.categoryName == categoryName);
 
 
-  res.render("general/menu", {
-    mealsCategory: mealsModel.getSeperateMeals()
-  });
+      if (!category) {
+        category = {
+          categoryName: categoryName,
+          mealkits: []
+        };
+
+        categories.push(category);
+      }
+
+
+      category.mealkits.push(currentThing);
+    }
+
+    console.log(categories);
+
+    res.render("general/menu", {
+      mealsCategory: categories
+    });
+
+  })
+
 });
 
 module.exports = router;
