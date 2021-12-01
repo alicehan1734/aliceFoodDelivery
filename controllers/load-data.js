@@ -304,6 +304,14 @@ router.get("/meal-kits", (req, res) => {
 
 });
 
+
+router.get("/add-data", (req, res) => {
+
+  res.render("user/clerk/dataClerk", {
+    message: message
+  });
+
+});
 module.exports = router;
 
 
