@@ -17,7 +17,8 @@ router.get("/", (req, res) => {
 
 router.get("/menu", (req, res) => {
 
-  // console.log(mealsModel.getSeperateMeals());
+  console.log("general", mealsModel.getSeperateMeals());
+
 
   res.render("general/menu", {
     mealsCategory: mealsModel.getSeperateMeals()

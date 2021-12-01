@@ -4,14 +4,18 @@ const router = express.Router();
 const mealModel = require("../models/mealsList");
 
 
+let message = "";
 
 router.get("/meal-kits", (req, res) => {
+
 
   if (req.session.user && req.session.isClerk) {
 
     mealModel.find().count({}, (err, count) => {
+
       if (err) {
-        res.send("Couldn't find: " + err);
+        message = "Couldn't find: " + err;
+
       }
       else if (count === 0) {
         var namesToAdd = [
@@ -230,26 +234,74 @@ router.get("/meal-kits", (req, res) => {
             top: false,
             type: "breakfast"
           },
+          {
+            title: "Pappardelle Pasta al Limone",
+            included: "Kosher salt, egg yolk, heavy cream, Parmesan cheese, 1 lemon, pappardelle pasta, butter, salted, chopped parsley",
+            desc: "very delicious",
+            category: "Family-Style Meals",
+            price: 12.2,
+            time: 34,
+            serv: 1,
+            calperServ: 23,
+            img: "./images/family2.jpg",
+            top: false,
+            type: "breakfast"
+          }, {
+            title: "Burst Cherry Tomato Pasta with Ricotta",
+            included: "Kosher salt, cherry tomatoes, preferably mixed colors, extra-virgin olive oil, spaghetti, bucatini, garlic clove, crumbled red chili, Black pepper, whole milk ricotta cheese, parmesan cheese, basil leaves",
+            desc: "very delicious",
+            category: "Family-Style Meals",
+            price: 11.45,
+            time: 34,
+            serv: 1,
+            calperServ: 87,
+            img: "./images/family3.jpg",
+            top: false,
+            type: "breakfast"
+          }, {
+            title: "Gnocchi with Mushrooms and Blue Cheese",
+            included: "Extra-virgin olive oil, white button mushrooms, portobello mushroom caps, Kosher salt, red onion, garlic cloves, tablespoons chopped fresh thyme, white wine, vegetable stock, heavy cream",
+            desc: "very delicious",
+            category: "Family-Style Meals",
+            price: 30.00,
+            time: 22,
+            serv: 2,
+            calperServ: 750,
+            img: "./images/family4.jpg",
+            top: false,
+            type: "breakfast"
+          },
         ];
 
         mealModel.collection.insertMany(namesToAdd, (err, docs) => {
           if (err) {
-            res.send("Couldn't insert: " + err);
+            message = "Couldn't insert: " + er;
+
           }
           else {
-            res.send("Success, data was loaded!");
+            message = "Added meal kits to the database";
+
           }
         });
       }
       else {
-        res.send("Sorry, the data is already loaded.");
+
+        message = "Meal kits have already been added to the database";
+
       }
+
     });
 
 
   } else {
+    message = "You are not authorized to add meal kits";
 
   }
+
+  res.render("user/clerk/loadData", {
+    message: message
+  });
+
 });
 
 module.exports = router;
