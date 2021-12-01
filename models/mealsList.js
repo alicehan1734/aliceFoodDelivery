@@ -1,3 +1,63 @@
+const mongoose = require("mongoose");
+const schema = mongoose.Schema;
+
+
+const mealSchema = new schema({
+  title: {
+    type: String,
+    required: true
+  },
+  included: {
+    type: String,
+    required: true
+  },
+  desc: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  time: {
+    type: Number,
+    required: true
+  },
+  serv: {
+    type: Number,
+    required: true
+  },
+  calperServ: {
+    type: Number,
+    required: true
+  },
+  img: {
+    type: String,
+    required: true
+  },
+  top: {
+    type: Boolean,
+    required: true
+  },
+  top: {
+    type: String,
+    required: true
+  },
+  dataCreated: {
+    type: Date,
+    default: Date.now()
+  }
+});
+
+const mealModel = mongoose.model("meal", mealSchema);
+
+module.exports = mealModel;
+
+
 var meals = [
   {
     title: "Homemade Supreme Pizza",
@@ -10,7 +70,7 @@ var meals = [
     calperServ: 750,
     img: "./images/ingredient1.jpg",
     top: true,
-    type: "breakfast"
+    top: "breakfast"
   },
   {
     title: "Mad Radish",
