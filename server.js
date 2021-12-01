@@ -46,9 +46,11 @@ app.use(fileUpload());
 
 const generalController = require("./controllers/general");
 const userController = require("./controllers/user");
+const loadDataController = require("./controllers/load-data");
 
 app.use("/", generalController);
 app.use("/user/", userController);
+app.use("/load-data/", loadDataController);
 
 // const sequelize = new sequelizeModule("d8h86e89sgssvu", "agbqrjocxjlbvt", "74c4731ec2cce056124efe51ca1c2e82a3cb0c9a0b8e3492bce753c52eed8f4e", {
 //   host: "ec2-54-160-35-196.compute-1.amazonaws.com",
