@@ -11,17 +11,10 @@ router.get("/", (req, res) => {
 
   mealsModel.find().lean().then(data => {
 
-    for (i = 0; i < data.length; i++) {
-      if (data[i].top) {
-        console.log(data[i].top)
-        filtered.push(data[i]);
-      }
-    }
-
-    console.log(filtered);
+    filtered = data.filter((value) => value.top);
 
     res.render("general/home", {
-      topMeals: data,
+      topMeals: filtered,
       info: infoModel.getAllinfo()
     });
 
@@ -29,23 +22,21 @@ router.get("/", (req, res) => {
 
 });
 
-
 router.get("/menu", (req, res) => {
 
   let categories = [];
 
   // console.log("general", mealsModel.getSeperateMeals());
-  mealsModel.find().lean().then(data => {
+  mealsModel.find().exec().then(data => {
 
     for (i = 0; i < data.length; i++) {
 
       let currentThing = data[i];
       let categoryName = currentThing.category;
-
       let category = categories.find(c => c.categoryName == categoryName);
 
-
       if (!category) {
+
         category = {
           categoryName: categoryName,
           mealkits: []
@@ -54,8 +45,8 @@ router.get("/menu", (req, res) => {
         categories.push(category);
       }
 
-
       category.mealkits.push(currentThing);
+
     }
 
     console.log(categories);

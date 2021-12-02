@@ -54,21 +54,21 @@ const mealModel = mongoose.model("meal", mealSchema);
 module.exports = mealModel;
 
 
-var meals = [
-  {
-    title: "Homemade Supreme Pizza",
-    included: "Pizza sauce, mozzarella, bacon, onion, beef mince, capsicum, pepperoni, mushroom, olives",
-    desc: "very delicious",
-    category: "Classic Meals",
-    price: 30.00,
-    time: 22,
-    serv: 2,
-    calperServ: 750,
-    img: "./images/ingredient1.jpg",
-    top: true,
-    top: "breakfast"
-  }
-];
+// var meals = [
+//   {
+//     title: "Homemade Supreme Pizza",
+//     included: "Pizza sauce, mozzarella, bacon, onion, beef mince, capsicum, pepperoni, mushroom, olives",
+//     desc: "very delicious",
+//     category: "Classic Meals",
+//     price: 30.00,
+//     time: 22,
+//     serv: 2,
+//     calperServ: 750,
+//     img: "./images/ingredient1.jpg",
+//     top: true,
+//     top: "breakfast"
+//   }
+// ];
 
 
 // module.exports.getAllMeals = function () {
