@@ -7,25 +7,113 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="/clerk/dataClerk.css">
-
+  <link rel="stylesheet" href="/user/login.css">
+  <script src="https://cdn.tiny.cloud/1/fjzk11b3uj0ktvxotbzs4nvqp23wz746pllzwb5agnrrlod8/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"></script>
+  <script src='https://cdn.tiny.cloud/1/fjzk11b3uj0ktvxotbzs4nvqp23wz746pllzwb5agnrrlod8/tinymce/5/tinymce.min.js'
+    referrerpolicy="origin">
+    </script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea'
+    });
+  </script>
 </head>
 
 <body>
 
   <div class="con">
     <div class="con-first">
-      sdfsdf
+      Manage Data
     </div>
 
-    <div>
-      <form>
-        dsfdsfdsf
+    <div class="con-second">
+      <form method="post" action="/user/login">
+        <div class="texting_field">
+          <input type="text" id="title" name="title" value="{{values.title}}">
+          <span></span>
+          <label for="title">* Title</label>
+        </div>
+
+        <div class="texting_field">
+          <input type="text" id="included" name="included" value="{{values.included}}">
+          <span></span>
+          <label for="included">* Included</label>
+        </div>
+
+        <div class="texting_field">
+          <label for="mytextarea">* Description</label>
+          <textarea id="mytextarea" name="mytextarea">
+          Description for Food
+          </textarea>
+        </div>
+
+        <div class="texting_field">
+          <input type="text" id="category" name="category" value="{{values.category}}">
+          <span></span>
+          <label for="category">* Category</label>
+        </div>
+
+        <div class="texting_field">
+          <input type="text" id="price" name="price" value="{{values.price}}">
+          <span></span>
+          <label for="price">* price</label>
+
+        </div>
+
+
+        <div class="texting_field">
+          <input type="text" id="time" name="time" value="{{values.time}}">
+          <span></span>
+          <label for="time">* time</label>
+
+        </div>
+
+
+        <div class="texting_field">
+          <input type="text" id="serv" name="serv" value="{{values.serv}}">
+          <span></span>
+          <label for="serv">* serv</label>
+
+        </div>
+
+        <div class="texting_field">
+          <input type="text" id="calperServ" name="calperServ" value="{{values.calperServ}}">
+          <span></span>
+          <label for="calperServ">* calperServ</label>
+
+        </div>
+
+
+        <div>
+          <div class="container">
+            <input type="radio" name="radio" id="customer" value="customer" checked="checked">
+            <label for="customer" class="customer">
+              <span> Top </span>
+            </label>
+            <input type="radio" name="radio" id="clerk" value="clerk">
+            <label for="clerk" class="clerk">
+              <span> Normal </span>
+            </label>
+          </div>
+
+        </div>
+
+        <div style="text-align:center">
+          {{#each errors}}
+          <p style="color: red">{{this}}</p>
+          {{/each}}
+        </div>
+
+        <input type="submit" value="Add Meal">
       </form>
 
-      <div>
+      <div class="lastcon">
         dsfdfs
       </div>
     </div>
+
+  </div>
 
   </div>
 

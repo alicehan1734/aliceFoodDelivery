@@ -1,0 +1,17 @@
+
+.con {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.con-second{
+  display: flex;
+}
+
+form{
+  width: 30%;
+}
+
+.lastcon{
+  width: 40vw;
+}

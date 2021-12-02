@@ -30,7 +30,7 @@ router.get("/meal-kits", (req, res) => {
             calperServ: 750,
             img: "./images/ingredient1.jpg",
             top: true,
-            top: "breakfast"
+            type: "breakfast"
           },
           {
             title: "Mad Radish",
