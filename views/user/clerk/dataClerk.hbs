@@ -28,7 +28,7 @@
     </div>
 
     <div class="con-second">
-      <form method="post" action="/user/login">
+      <form method="post" action="/load-data/add-data" class="menuForm">
         <div class="texting_field">
           <input type="text" id="title" name="title" value="{{values.title}}">
           <span></span>
@@ -84,6 +84,12 @@
 
         </div>
 
+        <div class="texting_field">
+          <input type="file" name="pic" id="pic" /><br /><br />
+          <span></span>
+          <label for="pic">* Picture</label>
+        </div>
+
 
         <div>
           <div class="container">
@@ -109,7 +115,22 @@
       </form>
 
       <div class="lastcon">
-        dsfdfs
+        {{#each data}}
+        <div>
+          <form method="post" action="/load-data/update-data">
+            <table>
+              <tr>
+                <td><input type="text" name="nickname" value="{{nickname}}" readonly /></td>
+                <td><input type="text" name="fName" value="{{fName}}" /></td>
+                <td><input type="text" name="lName" value="{{lName}}" /></td>
+                <td><input type="text" name="age" value="{{age}}" /></td>
+                <td><button type="submit">Update</button></td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        {{/each}}
+
       </div>
     </div>
 

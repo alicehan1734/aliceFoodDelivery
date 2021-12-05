@@ -8,10 +8,12 @@
   display: flex;
 }
 
-form{
-  width: 30%;
+.menuForm{
+  width: 40%;
 }
 
 .lastcon{
-  width: 40vw;
+  padding: 20px;
+
+  
 }
