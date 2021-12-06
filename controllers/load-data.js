@@ -2,6 +2,7 @@
 var express = require("express");
 const router = express.Router();
 const mealModel = require("../models/mealsList");
+const path = require("path");
 
 
 let message = "";
@@ -307,17 +308,81 @@ router.get("/meal-kits", (req, res) => {
 
 router.get("/add-data", (req, res) => {
 
-  res.render("user/clerk/dataClerk");
+  console.log(req.body)
+
+  if (req.session.isClerk == undefined) {
+    res.render("general/error");
+
+  } else {
+    if (req.session.isClerk) {
+
+      res.render("user/clerk/dataClerk");
+
+    } else {
+      res.render("general/error");
+    }
+  }
+
+
 
 });
 
 router.post("/add-data", (req, res) => {
-  console.log(req.body)
+
+  console.log(req.body);
+
+  const meal = new mealModel({
+    title: req.body.title,
+    included: req.body.included,
+    desc: req.body.mytextarea,
+    category: req.body.category,
+    price: req.body.price,
+    time: req.body.time,
+    serv: req.body.serv,
+    calperServ: req.body.calperServ,
+    img: req.body.img,
+    top: req.body.top == "true" ? true : false
+  })
+
+  meal.save()
+    .then((userSaved) => {
+
+      console.log(`User ${userSaved.title} has been added to the database.`);
+
+      let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.img.name).ext}`;
+
+      req.files.img.mv(`public/profile-pictures/${uniqueName}`)
+        .then(() => {
+
+          mealModel.updateOne({
+            _id: userSaved._id
+          }, {
+            img: uniqueName
+          })
+            .then(() => {
+              console.log("User document was updated with the profile picture.");
+              res.redirect("/");
+            })
+            .catch(err => {
+              console.log(`Error updating the user's profile picture ... ${err}`);
+              res.redirect("/");
+            })
+
+        });
 
 
-  res.render("user/clerk/dataClerk", {
-    message: message
-  });
+    }).catch((err) => {
+      console.log(`Error adding user to the database ... ${err}`);
+      res.redirect("/");
+    });
+
+  if (req.session.user && req.session.isClerk) {
+
+
+  } else {
+    res.render("general/error");
+  }
+
 
 });
 

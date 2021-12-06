@@ -37,7 +37,6 @@ const mealSchema = new schema({
   },
   img: {
     type: String,
-    required: true
   },
   top: {
     type: Boolean,

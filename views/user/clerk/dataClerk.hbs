@@ -28,7 +28,7 @@
     </div>
 
     <div class="con-second">
-      <form method="post" action="/load-data/add-data" class="menuForm">
+      <form method="post" action="/load-data/add-data" class="menuForm" enctype="multipart/form-data">
         <div class="texting_field">
           <input type="text" id="title" name="title" value="{{values.title}}">
           <span></span>
@@ -55,7 +55,7 @@
         </div>
 
         <div class="texting_field">
-          <input type="text" id="price" name="price" value="{{values.price}}">
+          <input type="number" id="price" name="price" value="{{values.price}}">
           <span></span>
           <label for="price">* price</label>
 
@@ -63,7 +63,7 @@
 
 
         <div class="texting_field">
-          <input type="text" id="time" name="time" value="{{values.time}}">
+          <input type="number" id="time" name="time" value="{{values.time}}">
           <span></span>
           <label for="time">* time</label>
 
@@ -71,33 +71,33 @@
 
 
         <div class="texting_field">
-          <input type="text" id="serv" name="serv" value="{{values.serv}}">
+          <input type="number" id="serv" name="serv" value="{{values.serv}}">
           <span></span>
           <label for="serv">* serv</label>
 
         </div>
 
         <div class="texting_field">
-          <input type="text" id="calperServ" name="calperServ" value="{{values.calperServ}}">
+          <input type="number" id="calperServ" name="calperServ" value="{{values.calperServ}}">
           <span></span>
           <label for="calperServ">* calperServ</label>
 
         </div>
 
         <div class="texting_field">
-          <input type="file" name="pic" id="pic" /><br /><br />
+          <input type="file" name="img" id="img" /><br /><br />
           <span></span>
-          <label for="pic">* Picture</label>
+          <label for="img">* Picture</label>
         </div>
 
 
         <div>
           <div class="container">
-            <input type="radio" name="radio" id="customer" value="customer" checked="checked">
+            <input type="radio" name="top" id="customer" value=true checked="checked">
             <label for="customer" class="customer">
               <span> Top </span>
             </label>
-            <input type="radio" name="radio" id="clerk" value="clerk">
+            <input type="radio" name="top" id="clerk" value=false>
             <label for="clerk" class="clerk">
               <span> Normal </span>
             </label>
@@ -110,12 +110,12 @@
           <p style="color: red">{{this}}</p>
           {{/each}}
         </div>
-
         <input type="submit" value="Add Meal">
       </form>
 
       <div class="lastcon">
-        {{#each data}}
+        Meal Kit Data List
+        {{!-- {{#each data}} --}}
         <div>
           <form method="post" action="/load-data/update-data">
             <table>
@@ -129,7 +129,9 @@
             </table>
           </form>
         </div>
-        {{/each}}
+
+
+        {{!-- {{/each}} --}}
 
       </div>
     </div>
