@@ -13,6 +13,9 @@
   <script src='https://cdn.tiny.cloud/1/fjzk11b3uj0ktvxotbzs4nvqp23wz746pllzwb5agnrrlod8/tinymce/5/tinymce.min.js'
     referrerpolicy="origin">
     </script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
   <script>
     tinymce.init({
       selector: '#mytextarea'
@@ -24,7 +27,11 @@
 
   <div class="con">
     <div class="con-first">
-      Manage Data
+      <img src="/images/setting.png" />
+
+      <div>
+        Manage Data
+      </div>
     </div>
 
     <div class="con-second">
@@ -84,10 +91,14 @@
 
         </div>
 
-        <div class="texting_field">
-          <input type="file" name="img" id="img" /><br /><br />
-          <span></span>
-          <label for="img">* Picture</label>
+        <div>
+          <input type="file" name="img" id="img" accept="image/*" class="imgInput"
+            onchange="getImage(this.value)" /><br /><br />
+          <label for="img" class="imgChoose"><i class="fas fa-plus"></i></label>
+          <div id="display-image"></div>
+          <script>
+
+          </script>
         </div>
 
 
@@ -114,24 +125,32 @@
       </form>
 
       <div class="lastcon">
-        Meal Kit Data List
-        {{!-- {{#each data}} --}}
         <div>
-          <form method="post" action="/load-data/update-data">
-            <table>
-              <tr>
-                <td><input type="text" name="nickname" value="{{nickname}}" readonly /></td>
-                <td><input type="text" name="fName" value="{{fName}}" /></td>
-                <td><input type="text" name="lName" value="{{lName}}" /></td>
-                <td><input type="text" name="age" value="{{age}}" /></td>
-                <td><button type="submit">Update</button></td>
-              </tr>
-            </table>
-          </form>
+          Recent Meal Kit Data List
+
         </div>
+        {{#each data}}
+        <a class="box">
+          <img src=/images/menuPictures/{{{img}}} class="menuImg" />
 
+          <div>
+            <div>
+              <div>
+                {{title}}
+              </div>
+              <img src="/images/detail.png" class="tag" />
+            </div>
+            <div>{{included}}</div>
+            <div>$ {{price}}</div>
+          </div>
 
-        {{!-- {{/each}} --}}
+        </a>
+
+        {{/each}}
+
+        <div class="goMenuList">
+          More Menu List
+        </div>
 
       </div>
     </div>

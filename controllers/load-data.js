@@ -9,9 +9,11 @@ let message = "";
 
 router.get("/meal-kits", (req, res) => {
 
+  console.log(req.session.user && req.session.isClerk)
 
   if (req.session.user && req.session.isClerk) {
 
+    console.log("gkgk")
     mealModel.find().count({}, (err, count) => {
 
       if (err) {
@@ -29,7 +31,7 @@ router.get("/meal-kits", (req, res) => {
             time: 22,
             serv: 2,
             calperServ: 750,
-            img: "./images/ingredient1.jpg",
+            img: "ingredient1.jpg",
             top: true,
             type: "breakfast"
           },
@@ -42,7 +44,7 @@ router.get("/meal-kits", (req, res) => {
             time: 23,
             serv: 2,
             calperServ: 920,
-            img: "./images/ingredient2.jpg",
+            img: "ingredient2.jpg",
             top: true,
             type: "breakfast"
           },
@@ -55,7 +57,7 @@ router.get("/meal-kits", (req, res) => {
             time: 12,
             serv: 2,
             calperServ: 1000,
-            img: "./images/ingredient3.jpg",
+            img: "ingredient3.jpg",
             top: false,
             type: "breakfast"
           },
@@ -68,7 +70,7 @@ router.get("/meal-kits", (req, res) => {
             time: 8,
             serv: 3,
             calperServ: 500,
-            img: "./images/ingredient4.jpg",
+            img: "ingredient4.jpg",
             top: false,
             type: "breakfast"
           },
@@ -81,7 +83,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 940,
-            img: "./images/ingredient5.jpg",
+            img: "ingredient5.jpg",
             top: false,
             type: "breakfast"
           },
@@ -94,7 +96,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 90,
-            img: "./images/dessert1.jpg",
+            img: "dessert1.jpg",
             top: false,
             type: "breakfast"
           },
@@ -107,7 +109,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 23,
-            img: "./images/dessert2.jpg",
+            img: "dessert2.jpg",
             top: false,
             type: "breakfast"
           }, {
@@ -119,7 +121,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 44,
-            img: "./images/dessert3.jpg",
+            img: "dessert3.jpg",
             top: false,
             type: "breakfast"
           }, {
@@ -131,7 +133,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 66,
-            img: "./images/dessert4.jpg",
+            img: "dessert4.jpg",
             top: true,
             type: "breakfast"
           }, {
@@ -143,7 +145,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 56,
-            img: "./images/dessert5.jpg",
+            img: "dessert5.jpg",
             top: false,
             type: "breakfast"
           }, {
@@ -155,7 +157,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 87,
-            img: "./images/dessert6.jpg",
+            img: "dessert6.jpg",
             top: true,
             type: "breakfast"
           },
@@ -168,7 +170,7 @@ router.get("/meal-kits", (req, res) => {
             time: 22,
             serv: 2,
             calperServ: 750,
-            img: "./images/easy1.jpg",
+            img: "easy1.jpg",
             top: false,
             type: "breakfast"
           },
@@ -181,7 +183,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 87,
-            img: "./images/vegi1.jpg",
+            img: "vegi1.jpg",
             top: false,
             type: "breakfast"
           },
@@ -194,7 +196,7 @@ router.get("/meal-kits", (req, res) => {
             time: 22,
             serv: 2,
             calperServ: 750,
-            img: "./images/vegi2.jpg",
+            img: "vegi2.jpg",
             top: false,
             type: "breakfast"
           }, {
@@ -206,7 +208,7 @@ router.get("/meal-kits", (req, res) => {
             time: 12,
             serv: 2,
             calperServ: 1000,
-            img: "./images/vegi3.jpg",
+            img: "vegi3.jpg",
             top: false,
             type: "breakfast"
           }, {
@@ -218,7 +220,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 87,
-            img: "./images/vegi4.jpg",
+            img: "vegi4.jpg",
             top: false,
             type: "breakfast"
           },
@@ -231,7 +233,7 @@ router.get("/meal-kits", (req, res) => {
             time: 12,
             serv: 2,
             calperServ: 1000,
-            img: "./images/family1.jpg",
+            img: "family1.jpg",
             top: false,
             type: "breakfast"
           },
@@ -244,7 +246,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 23,
-            img: "./images/family2.jpg",
+            img: "family2.jpg",
             top: false,
             type: "breakfast"
           }, {
@@ -256,7 +258,7 @@ router.get("/meal-kits", (req, res) => {
             time: 34,
             serv: 1,
             calperServ: 87,
-            img: "./images/family3.jpg",
+            img: "family3.jpg",
             top: false,
             type: "breakfast"
           }, {
@@ -268,7 +270,7 @@ router.get("/meal-kits", (req, res) => {
             time: 22,
             serv: 2,
             calperServ: 750,
-            img: "./images/family4.jpg",
+            img: "family4.jpg",
             top: false,
             type: "breakfast"
           },
@@ -280,7 +282,12 @@ router.get("/meal-kits", (req, res) => {
 
           }
           else {
+            console.log("success");
+
             message = "Added meal kits to the database";
+            res.redirect("user/clerk/loadData", {
+              message: message
+            });
 
           }
         });
@@ -310,73 +317,111 @@ router.get("/add-data", (req, res) => {
 
   console.log(req.body)
 
-  if (req.session.isClerk == undefined) {
-    res.render("general/error");
+  mealModel.find()
+    .exec()
+    .then((data) => {
+      // Pull the data (exclusively)
+      // This is to ensure that our "data" object contains the returned data (only) and nothing else.
+      data = data.reverse();
 
-  } else {
-    if (req.session.isClerk) {
+      data = data.slice(0, 5);
+      data = data.map(value => value.toObject());
 
-      res.render("user/clerk/dataClerk");
+      console.log(data);
 
-    } else {
-      res.render("general/error");
-    }
-  }
+      // Render the "viewTable" view with the data
+      res.render("user/clerk/dataClerk", {
+        data
+      });
+    });
+
+
+
+  // if (req.session.isClerk == undefined) {
+  //   res.render("general/error");
+
+  // } else {
+
+  //   if (req.session.isClerk) {
+
+  //     mealModel.find()
+  //       .exec()
+  //       .then((data) => {
+  //         // Pull the data (exclusively)
+  //         // This is to ensure that our "data" object contains the returned data (only) and nothing else.
+  //         data = data.map(value => value.toObject());
+
+  //         console.log(data);
+
+  //         // Render the "viewTable" view with the data
+  //         res.render("user/clerk/dataClerk", {
+  //           data
+  //         });
+  //       });
+
+
+  //   } else {
+  //     res.render("general/error");
+  //   }
+  // }
 
 
 
 });
 
+
+
 router.post("/add-data", (req, res) => {
 
   console.log(req.body);
 
-  const meal = new mealModel({
-    title: req.body.title,
-    included: req.body.included,
-    desc: req.body.mytextarea,
-    category: req.body.category,
-    price: req.body.price,
-    time: req.body.time,
-    serv: req.body.serv,
-    calperServ: req.body.calperServ,
-    img: req.body.img,
-    top: req.body.top == "true" ? true : false
-  })
-
-  meal.save()
-    .then((userSaved) => {
-
-      console.log(`User ${userSaved.title} has been added to the database.`);
-
-      let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.img.name).ext}`;
-
-      req.files.img.mv(`public/profile-pictures/${uniqueName}`)
-        .then(() => {
-
-          mealModel.updateOne({
-            _id: userSaved._id
-          }, {
-            img: uniqueName
-          })
-            .then(() => {
-              console.log("User document was updated with the profile picture.");
-              res.redirect("/");
-            })
-            .catch(err => {
-              console.log(`Error updating the user's profile picture ... ${err}`);
-              res.redirect("/");
-            })
-
-        });
-
-
-    }).catch((err) => {
-      console.log(`Error adding user to the database ... ${err}`);
-      res.redirect("/");
-    });
-
   if (req.session.user && req.session.isClerk) {
+
+    const meal = new mealModel({
+      title: req.body.title,
+      included: req.body.included,
+      desc: req.body.mytextarea,
+      category: req.body.category,
+      price: req.body.price,
+      time: req.body.time,
+      serv: req.body.serv,
+      calperServ: req.body.calperServ,
+      img: req.body.img,
+      top: req.body.top == "true" ? true : false
+    })
+
+    meal.save()
+      .then((userSaved) => {
+
+        console.log(`User ${userSaved.title} has been added to the database.`);
+
+        let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.img.name).ext}`;
+
+        req.files.img.mv(`static/images/menuPictures/${uniqueName}`)
+          .then(() => {
+
+            mealModel.updateOne({
+              _id: userSaved._id
+            }, {
+              img: uniqueName
+            })
+              .then(() => {
+                console.log("User document was updated with the profile picture.");
+                res.redirect("/load-data/add-data");
+
+              })
+              .catch(err => {
+                console.log(`Error updating the user's profile picture ... ${err}`);
+                res.redirect("/load-data/add-data");
+              })
+
+          });
+
+
+      }).catch((err) => {
+        console.log(`Error adding user to the database ... ${err}`);
+        res.redirect("/load-data/add-data");
+      });
 
 
   } else {
