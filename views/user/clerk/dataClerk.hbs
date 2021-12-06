@@ -93,10 +93,14 @@
 
         <div>
           <input type="file" name="img" id="img" accept="image/*" class="imgInput"
-            onchange="getImage(this.value)" /><br /><br />
+            onchange=getImage(this.value) /><br /><br />
           <label for="img" class="imgChoose"><i class="fas fa-plus"></i></label>
           <div id="display-image"></div>
-          <script>
+          <script type="text/javascript">
+            function getImage(imgname) {
+              var img = imgname.replace(/^.*\\/, "");
+              $('#display-image').html(img)
+            }
 
           </script>
         </div>
