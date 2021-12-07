@@ -324,7 +324,7 @@ router.get("/add-data", (req, res) => {
       // This is to ensure that our "data" object contains the returned data (only) and nothing else.
       data = data.reverse();
 
-      data = data.slice(0, 5);
+      // data = data.slice(0, 5);
       data = data.map(value => value.toObject());
 
       console.log(data);
@@ -335,13 +335,9 @@ router.get("/add-data", (req, res) => {
       });
     });
 
-
-
   // if (req.session.isClerk == undefined) {
   //   res.render("general/error");
-
   // } else {
-
   //   if (req.session.isClerk) {
 
   //     mealModel.find()
@@ -350,26 +346,18 @@ router.get("/add-data", (req, res) => {
   //         // Pull the data (exclusively)
   //         // This is to ensure that our "data" object contains the returned data (only) and nothing else.
   //         data = data.map(value => value.toObject());
-
   //         console.log(data);
-
   //         // Render the "viewTable" view with the data
   //         res.render("user/clerk/dataClerk", {
   //           data
   //         });
   //       });
-
-
   //   } else {
   //     res.render("general/error");
   //   }
   // }
 
-
-
 });
-
-
 
 router.post("/add-data", (req, res) => {
 
@@ -431,6 +419,19 @@ router.post("/add-data", (req, res) => {
 
 });
 
+
+router.get("/revise-menu", (req, res) => {
+
+
+  userModel.findOne({
+    _id: email
+  })
+    .then(user => {
+
+    })
+
+
+});
 
 module.exports = router;
 
