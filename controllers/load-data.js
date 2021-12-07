@@ -429,14 +429,78 @@ router.get("/revise-menu", (req, res) => {
     .then(user => {
       console.log(user)
 
-
       res.render("user/clerk/reviseMenu", {
         values: user.toObject()
       })
-
-
     })
 
+
+});
+
+
+
+router.post("/revise-menu", (req, res) => {
+
+  console.log(req.query.id)
+
+  // Update the document in the collection.
+
+  if (req.body.img) {
+    let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.img.name).ext}`;
+
+    req.files.img.mv(`static/images/menuPictures/${uniqueName}`)
+      .then(() => {
+
+        mealModel.updateOne({
+          _id: req.query.id
+        }, {
+          img: uniqueName
+        })
+          .then(() => {
+            console.log("User document was updated with the profile picture.");
+
+          })
+          .catch(err => {
+            console.log(`Error updating the user's profile picture ... ${err}`);
+          })
+
+      });
+
+  }
+
+
+  mealModel.updateOne({
+    _id: req.query.id
+  }, {
+    $set: {
+      title: req.body.title,
+      included: req.body.included,
+      desc: req.body.mytextarea,
+      category: req.body.category,
+      price: req.body.price,
+      time: req.body.time,
+      serv: req.body.serv,
+      calperServ: req.body.calperServ,
+      top: req.body.top == "true" ? true : false
+    }
+  })
+    .exec()
+    .then(() => {
+      console.log("Successfully updated the name for " + req.body.title);
+
+      console.log(req.query.id)
+      mealModel.findOne({
+        _id: req.query.id
+      })
+        .then(user => {
+          console.log(user)
+
+          res.render("user/clerk/reviseMenu", {
+            values: user.toObject()
+          })
+        })
+
+    });
 
 });
 

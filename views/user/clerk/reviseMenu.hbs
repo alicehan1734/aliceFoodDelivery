@@ -35,7 +35,7 @@
     </div>
 
     <div class="con-second">
-      <form method="post" action="/load-data/add-data" class="menuForm" enctype="multipart/form-data">
+      <form method="post" action="/load-data/revise-menu" class="menuForm" enctype="multipart/form-data">
         <div class="texting_field">
           <input type="text" id="title" name="title" value="{{values.title}}">
           <span></span>
@@ -47,9 +47,8 @@
           <span></span>
           <label for="included">* Included</label>
         </div>
-
-        <div class="texting_field">
-          <label for="mytextarea">* Description</label>
+        <div style="color:#E95C63">* Description</div>
+        <div class=" texting_field">
           <textarea id="mytextarea" name="mytextarea">
           {{values.desc}}
           </textarea>
@@ -91,6 +90,8 @@
 
         </div>
 
+        <div style="color:#E95C63">* Update Image</div>
+
         <div>
           <input type="file" name="img" id="img" accept="image/*" value="{{values.img}}" /><br /><br />
           <label for="img" class="imgChoose"></label>
@@ -121,32 +122,18 @@
 
       <div class="lastcon">
         <div>
-          Recent Meal Kit Data List
-
+          Current Meal Information
         </div>
-        {{#each data}}
-        <a class="box">
-          <img src=/images/menuPictures/{{{img}}} class="menuImg" />
 
+        <div class="card" style="display:inline-block">
+          <img src=/images/menuPictures/{{{values.img}}}>
           <div>
-            <div>
-              <div>
-                {{title}}
-              </div>
-              <img src="/images/detail.png" class="tag" />
-            </div>
-            <div>{{included}}</div>
-            <div>$ {{price}}</div>
+            <h4><b>{{values.title}}</b></h4>
+            <button>${{values.price}}</button>
+
+            <p>{{values.included}}</p>
           </div>
-
-        </a>
-
-        {{/each}}
-
-        <div class="goMenuList">
-          More Menu List
         </div>
-
       </div>
     </div>
 
