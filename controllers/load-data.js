@@ -423,10 +423,17 @@ router.post("/add-data", (req, res) => {
 router.get("/revise-menu", (req, res) => {
 
 
-  userModel.findOne({
-    _id: email
+  mealModel.findOne({
+    _id: req.query.id
   })
     .then(user => {
+      console.log(user)
+
+
+      res.render("user/clerk/reviseMenu", {
+        values: user.toObject()
+      })
+
 
     })
 

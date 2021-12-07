@@ -30,7 +30,7 @@
       <img src="/images/setting.png" />
 
       <div>
-        Manage Data
+        Revise Menu
       </div>
     </div>
 
@@ -51,7 +51,7 @@
         <div class="texting_field">
           <label for="mytextarea">* Description</label>
           <textarea id="mytextarea" name="mytextarea">
-          Description for Food
+          {{values.desc}}
           </textarea>
         </div>
 
@@ -92,7 +92,7 @@
         </div>
 
         <div>
-          <input type="file" name="img" id="img" accept="image/*" /><br /><br />
+          <input type="file" name="img" id="img" accept="image/*" value="{{values.img}}" /><br /><br />
           <label for="img" class="imgChoose"></label>
         </div>
 
