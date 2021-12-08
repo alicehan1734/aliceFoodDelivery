@@ -493,14 +493,17 @@ router.post("/revise-menu", (req, res) => {
   console.log(req.body)
   // Update the document in the collection.
   if (req.session.user && req.session.isClerk) {
-    if (req.body.img) {
-      let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.img.name).ext}`;
+
+    if (req.files) {
+      let uniqueName = `profile-pic-${req.body.id}${path.parse(req.files.img.name).ext}`;
+
+      console.log(uniqueName);
 
       req.files.img.mv(`static/images/menuPictures/${uniqueName}`)
         .then(() => {
 
           mealModel.updateOne({
-            _id: req.query.id
+            _id: req.body.id
           }, {
             img: uniqueName
           })
@@ -516,66 +519,31 @@ router.post("/revise-menu", (req, res) => {
 
     }
 
-    mealModel.findOne({ id: req.body.id }).then(meal => {
-      console.log("FOUND MEAL")
-      console.log(meal)
-      meal.title = req.body.title,
-        meal.included = req.body.included,
-        meal.desc = req.body.mytextarea,
-        meal.category = req.body.category,
-        meal.price = req.body.price,
-        meal.time = req.body.time,
-        meal.serv = req.body.serv,
-        meal.calperServ = req.body.calperServ,
-        meal.top = req.body.top == "true" ? true : false
-
-      meal.save().then(result => {
-
-        res.redirect(`/load-data/revise-menu?id=${req.body.id}`);
-
-
-      }).catch(err => { console.log(err) })
+    // find one and update where the id is equal to the id in the body
+    mealModel.findOneAndUpdate({
+      _id: req.body.id
+    }, {
+      title: req.body.title,
+      included: req.body.included,
+      desc: req.body.mytextarea,
+      category: req.body.category,
+      price: req.body.price,
+      time: req.body.time,
+      serv: req.body.serv,
+      calperServ: req.body.calperServ,
+      top: req.body.top === "true"
     })
-
-
+      .then(() => {
+        console.log("User document was updated.");
+        res.redirect("/load-data/revise-menu?id=" + req.body.id);
+      })
+      .catch(err => {
+        console.log(`Error updating the user's profile picture ... ${err}`);
+        res.render("general/error");
+      })
   } else {
     res.render("general/error");
-
   }
-
-
-  // mealModel.updateOne({
-  //   _id: req.query.id
-  // }, {
-  //   $set: {
-  //     title: req.body.title,
-  //     included: req.body.included,
-  //     desc: req.body.mytextarea,
-  //     category: req.body.category,
-  //     price: req.body.price,
-  //     time: req.body.time,
-  //     serv: req.body.serv,
-  //     calperServ: req.body.calperServ,
-  //     top: req.body.top == "true" ? true : false
-  //   }
-  // })
-  //   .exec()
-  //   .then((err, user) => {
-  //     console.log(err)
-  //     console.log(user)
-  //     console.log("Successfully updated the name for " + req.body.title);
-
-  //   })
-  //   .catch(err => {
-  //     console.log(`Error updated ... ${err}`);
-  //   });
-
-
-
-  // console.log(req.query.id)
-
-
-
 })
 
 

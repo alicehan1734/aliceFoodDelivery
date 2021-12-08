@@ -106,3 +106,51 @@ background: linear-gradient(90deg, rgba(237,223,226,1) 8%, rgba(233,92,99,1) 79%
   padding-left: 20px;
 }
 
+@media screen and (max-width : 1000px) {
+
+  .con-second form {
+    width: 100%;
+  }
+  .lastcon {
+    width: unset;
+  }
+  .lastcon .card {
+    margin: unset;
+    width: 100%;
+  }
+  .lastcon img {
+    object-fit: cover;
+  }
+  .con-second{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menuForm{
+    width: 100%;
+  }
+
+  .lastcon{
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  .box{
+    width: initial;
+
+  }
+
+  .menuImg{
+    width : 70px;
+    min-width: 70px;
+  }
+
+  .box > div:nth-child(2) > div:first-child{
+    font-size: 15px;
+  }
+
+  .box > div:nth-child(2) > div {
+    font-size: 10px;
+
+  }
+}
