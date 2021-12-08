@@ -17,6 +17,8 @@ router.get("/meal-kits", (req, res) => {
     mealModel.find().count({}, (err, count) => {
 
       if (err) {
+        console.log(err);
+
         message = "Couldn't find: " + err;
 
       }
@@ -285,7 +287,8 @@ router.get("/meal-kits", (req, res) => {
             console.log("success");
 
             message = "Added meal kits to the database";
-            res.redirect("user/clerk/loadData", {
+
+            res.render("user/clerk/loadData", {
               message: message
             });
 
@@ -296,6 +299,10 @@ router.get("/meal-kits", (req, res) => {
 
         message = "Meal kits have already been added to the database";
 
+        res.render("user/clerk/loadData", {
+          message: message
+        });
+
       }
 
     });
@@ -304,11 +311,11 @@ router.get("/meal-kits", (req, res) => {
   } else {
     message = "You are not authorized to add meal kits";
 
-  }
+    res.render("user/clerk/loadData", {
+      message: message
+    });
 
-  res.render("user/clerk/loadData", {
-    message: message
-  });
+  }
 
 });
 
@@ -441,7 +448,12 @@ router.get("/revise-menu", (req, res) => {
 
 router.post("/revise-menu", (req, res) => {
 
+  let validation = "";
+
   console.log(req.query.id)
+  console.log("checking");
+
+  console.log(req.body);
 
   // Update the document in the collection.
 
@@ -469,40 +481,64 @@ router.post("/revise-menu", (req, res) => {
   }
 
 
-  mealModel.updateOne({
-    _id: req.query.id
-  }, {
-    $set: {
-      title: req.body.title,
-      included: req.body.included,
-      desc: req.body.mytextarea,
-      category: req.body.category,
-      price: req.body.price,
-      time: req.body.time,
-      serv: req.body.serv,
-      calperServ: req.body.calperServ,
-      top: req.body.top == "true" ? true : false
-    }
+
+  mealModel.findOne({ id: req.query.id }).then(meal => {
+    meal.title = req.body.title,
+      meal.included = req.body.included,
+      meal.desc = req.body.mytextarea,
+      meal.category = req.body.category,
+      meal.price = req.body.price,
+      meal.time = req.body.time,
+      meal.serv = req.body.serv,
+      meal.calperServ = req.body.calperServ,
+      meal.top = req.body.top == "true" ? true : false
+
+    meal.save().then(result => {
+
+      res.render("/load-data/revise-menu", {
+        id: result.id
+      });
+
+
+    }).catch(err => { console.log(err) })
   })
-    .exec()
-    .then(() => {
-      console.log("Successfully updated the name for " + req.body.title);
 
-      console.log(req.query.id)
-      mealModel.findOne({
-        _id: req.query.id
-      })
-        .then(user => {
-          console.log(user)
 
-          res.render("user/clerk/reviseMenu", {
-            values: user.toObject()
-          })
-        })
 
-    });
+  // mealModel.updateOne({
+  //   _id: req.query.id
+  // }, {
+  //   $set: {
+  //     title: req.body.title,
+  //     included: req.body.included,
+  //     desc: req.body.mytextarea,
+  //     category: req.body.category,
+  //     price: req.body.price,
+  //     time: req.body.time,
+  //     serv: req.body.serv,
+  //     calperServ: req.body.calperServ,
+  //     top: req.body.top == "true" ? true : false
+  //   }
+  // })
+  //   .exec()
+  //   .then((err, user) => {
+  //     console.log(err)
+  //     console.log(user)
+  //     console.log("Successfully updated the name for " + req.body.title);
 
-});
+  //   })
+  //   .catch(err => {
+  //     console.log(`Error updated ... ${err}`);
+  //   });
+
+
+
+  // console.log(req.query.id)
+
+
+
+})
+
 
 module.exports = router;
 
