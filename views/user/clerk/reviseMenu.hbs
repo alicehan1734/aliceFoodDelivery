@@ -36,6 +36,7 @@
 
     <div class="con-second">
       <form method="post" action="/load-data/revise-menu" class="menuForm" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{values._id}}">
         <div class="texting_field">
           <input type="text" id="title" name="title" value="{{values.title}}">
           <span></span>
@@ -79,14 +80,14 @@
         <div class="texting_field">
           <input type="number" id="serv" name="serv" value="{{values.serv}}">
           <span></span>
-          <label for="serv">* serv</label>
+          <label for="serv">* Serving</label>
 
         </div>
 
         <div class="texting_field">
           <input type="number" id="calperServ" name="calperServ" value="{{values.calperServ}}">
           <span></span>
-          <label for="calperServ">* calperServ</label>
+          <label for="calperServ">* Calories per Serving</label>
 
         </div>
 
@@ -113,9 +114,9 @@
         </div>
 
         <div style="text-align:center">
-          {{#each errors}}
-          <p style="color: red">{{this}}</p>
-          {{/each}}
+          {{#if errors}}
+          <p style="color: red">{{errors}}</p>
+          {{/if}}
         </div>
         <input type="submit" value="Add Meal">
       </form>

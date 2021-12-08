@@ -323,24 +323,29 @@ router.get("/meal-kits", (req, res) => {
 router.get("/add-data", (req, res) => {
 
   console.log(req.body)
+  if (req.session.user && req.session.isClerk) {
+    mealModel.find()
+      .exec()
+      .then((data) => {
+        // Pull the data (exclusively)
+        // This is to ensure that our "data" object contains the returned data (only) and nothing else.
+        data = data.reverse();
 
-  mealModel.find()
-    .exec()
-    .then((data) => {
-      // Pull the data (exclusively)
-      // This is to ensure that our "data" object contains the returned data (only) and nothing else.
-      data = data.reverse();
+        // data = data.slice(0, 5);
+        data = data.map(value => value.toObject());
 
-      // data = data.slice(0, 5);
-      data = data.map(value => value.toObject());
+        console.log(data);
 
-      console.log(data);
-
-      // Render the "viewTable" view with the data
-      res.render("user/clerk/dataClerk", {
-        data
+        // Render the "viewTable" view with the data
+        res.render("user/clerk/dataClerk", {
+          data
+        });
       });
-    });
+  } else {
+    res.render("general/error");
+
+  }
+
 
   // if (req.session.isClerk == undefined) {
   //   res.render("general/error");
@@ -370,57 +375,91 @@ router.post("/add-data", (req, res) => {
 
   console.log(req.body);
 
-  if (req.session.user && req.session.isClerk) {
+  let errorMsg = "";
 
-    const meal = new mealModel({
-      title: req.body.title,
-      included: req.body.included,
-      desc: req.body.mytextarea,
-      category: req.body.category,
-      price: req.body.price,
-      time: req.body.time,
-      serv: req.body.serv,
-      calperServ: req.body.calperServ,
-      img: req.body.img,
-      top: req.body.top == "true" ? true : false
-    })
 
-    meal.save()
-      .then((userSaved) => {
 
-        console.log(`User ${userSaved.title} has been added to the database.`);
+  if (req.body.title && req.body.included
+    && req.body.mytextarea && req.body.category && req.body.price
+    && req.body.time && req.body.serv && req.body.calperServ && req.files.img.name && req.body.top) {
 
-        let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.img.name).ext}`;
+    if (req.session.user && req.session.isClerk) {
 
-        req.files.img.mv(`static/images/menuPictures/${uniqueName}`)
-          .then(() => {
+      const meal = new mealModel({
+        title: req.body.title,
+        included: req.body.included,
+        desc: req.body.mytextarea,
+        category: req.body.category,
+        price: req.body.price,
+        time: req.body.time,
+        serv: req.body.serv,
+        calperServ: req.body.calperServ,
+        img: req.body.img,
+        top: req.body.top == "true" ? true : false
+      })
 
-            mealModel.updateOne({
-              _id: userSaved._id
-            }, {
-              img: uniqueName
-            })
-              .then(() => {
-                console.log("User document was updated with the profile picture.");
-                res.redirect("/load-data/add-data");
+      meal.save()
+        .then((userSaved) => {
 
+          console.log(`User ${userSaved.title} has been added to the database.`);
+
+          let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.img.name).ext}`;
+
+          req.files.img.mv(`static/images/menuPictures/${uniqueName}`)
+            .then(() => {
+
+              mealModel.updateOne({
+                _id: userSaved._id
+              }, {
+                img: uniqueName
               })
-              .catch(err => {
-                console.log(`Error updating the user's profile picture ... ${err}`);
-                res.redirect("/load-data/add-data");
-              })
+                .then(() => {
+                  console.log("User document was updated with the profile picture.");
+                  res.redirect("/load-data/add-data");
 
-          });
+                })
+                .catch(err => {
+                  console.log(`Error updating the user's profile picture ... ${err}`);
+                  res.redirect("/load-data/add-data");
+                })
+
+            });
 
 
-      }).catch((err) => {
-        console.log(`Error adding user to the database ... ${err}`);
-        res.redirect("/load-data/add-data");
-      });
+        }).catch((err) => {
+          console.log(`Error adding user to the database ... ${err}`);
+          res.redirect("/load-data/add-data");
+        });
 
+
+    } else {
+      res.render("general/error");
+    }
 
   } else {
-    res.render("general/error");
+    errorMsg = "Please fill out all of the forms"
+    console.log(errorMsg);
+
+    mealModel.find()
+      .exec()
+      .then((data) => {
+        // Pull the data (exclusively)
+        // This is to ensure that our "data" object contains the returned data (only) and nothing else.
+        data = data.reverse();
+
+        // data = data.slice(0, 5);
+        data = data.map(value => value.toObject());
+
+        // console.log(data);
+
+        // Render the "viewTable" view with the data
+        res.render("user/clerk/dataClerk", {
+          values: req.body,
+          data,
+          errors: errorMsg
+        });
+      });
+
   }
 
 
@@ -429,17 +468,19 @@ router.post("/add-data", (req, res) => {
 
 router.get("/revise-menu", (req, res) => {
 
-
-  mealModel.findOne({
-    _id: req.query.id
-  })
-    .then(user => {
-      console.log(user)
-
-      res.render("user/clerk/reviseMenu", {
-        values: user.toObject()
-      })
+  if (req.session.user && req.session.isClerk) {
+    mealModel.findOne({
+      _id: req.query.id
     })
+      .then(user => {
+        res.render("user/clerk/reviseMenu", {
+          values: user.toObject()
+        })
+      })
+  } else {
+    res.render("general/error");
+  }
+
 
 
 });
@@ -449,60 +490,58 @@ router.get("/revise-menu", (req, res) => {
 router.post("/revise-menu", (req, res) => {
 
   let validation = "";
-
-  console.log(req.query.id)
-  console.log("checking");
-
-  console.log(req.body);
-
+  console.log(req.body)
   // Update the document in the collection.
+  if (req.session.user && req.session.isClerk) {
+    if (req.body.img) {
+      let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.img.name).ext}`;
 
-  if (req.body.img) {
-    let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.img.name).ext}`;
+      req.files.img.mv(`static/images/menuPictures/${uniqueName}`)
+        .then(() => {
 
-    req.files.img.mv(`static/images/menuPictures/${uniqueName}`)
-      .then(() => {
-
-        mealModel.updateOne({
-          _id: req.query.id
-        }, {
-          img: uniqueName
-        })
-          .then(() => {
-            console.log("User document was updated with the profile picture.");
-
+          mealModel.updateOne({
+            _id: req.query.id
+          }, {
+            img: uniqueName
           })
-          .catch(err => {
-            console.log(`Error updating the user's profile picture ... ${err}`);
-          })
+            .then(() => {
+              console.log("User document was updated with the profile picture.");
 
-      });
+            })
+            .catch(err => {
+              console.log(`Error updating the user's profile picture ... ${err}`);
+            })
+
+        });
+
+    }
+
+    mealModel.findOne({ id: req.body.id }).then(meal => {
+      console.log("FOUND MEAL")
+      console.log(meal)
+      meal.title = req.body.title,
+        meal.included = req.body.included,
+        meal.desc = req.body.mytextarea,
+        meal.category = req.body.category,
+        meal.price = req.body.price,
+        meal.time = req.body.time,
+        meal.serv = req.body.serv,
+        meal.calperServ = req.body.calperServ,
+        meal.top = req.body.top == "true" ? true : false
+
+      meal.save().then(result => {
+
+        res.redirect(`/load-data/revise-menu?id=${req.body.id}`);
+
+
+      }).catch(err => { console.log(err) })
+    })
+
+
+  } else {
+    res.render("general/error");
 
   }
-
-
-
-  mealModel.findOne({ id: req.query.id }).then(meal => {
-    meal.title = req.body.title,
-      meal.included = req.body.included,
-      meal.desc = req.body.mytextarea,
-      meal.category = req.body.category,
-      meal.price = req.body.price,
-      meal.time = req.body.time,
-      meal.serv = req.body.serv,
-      meal.calperServ = req.body.calperServ,
-      meal.top = req.body.top == "true" ? true : false
-
-    meal.save().then(result => {
-
-      res.render("/load-data/revise-menu", {
-        id: result.id
-      });
-
-
-    }).catch(err => { console.log(err) })
-  })
-
 
 
   // mealModel.updateOne({

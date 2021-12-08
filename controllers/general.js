@@ -9,9 +9,10 @@ router.get("/", (req, res) => {
 
   let filtered = [];
 
-  mealsModel.find().lean().then(data => {
+  mealsModel.find().exec().then(data => {
 
     filtered = data.filter((value) => value.top);
+    filtered = filtered.map((value) => value.toObject());
 
     res.render("general/home", {
       topMeals: filtered,
@@ -27,7 +28,7 @@ router.get("/menu", (req, res) => {
   let categories = [];
 
   // console.log("general", mealsModel.getSeperateMeals());
-  mealsModel.find().exec().then(data => {
+  mealsModel.find().lean().then(data => {
 
     for (i = 0; i < data.length; i++) {
 

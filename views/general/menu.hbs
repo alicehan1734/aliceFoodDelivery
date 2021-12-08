@@ -15,11 +15,13 @@
     {{>hero}}
   </div>
   <div class="menuCon">
-    <a href="#0">Classic Meals</a>
-    <a href="#1">Dessert</a>
-    <a href="#2">Easy Prep Meals</a>
-    <a href="#3">Vegetarian Meals</a>
-    <a href="#4">Family-Style Meals</a>
+
+    {{#each mealsCategory}}
+
+    <a href=#{{@index}}>{{categoryName}}</a>
+
+    {{/each}}
+
   </div>
   <div class="con">
     {{#each mealsCategory}}
