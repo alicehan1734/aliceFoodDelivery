@@ -23,6 +23,12 @@ router.get("/", (req, res) => {
 
 });
 
+router.get("/menu/description", (req, res) => {
+
+  console.log("description page");
+
+})
+
 router.get("/menu", (req, res) => {
 
   let categories = [];
