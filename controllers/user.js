@@ -521,4 +521,9 @@ router.get("/customer/dashboard", (req, res) => {
 })
 
 
+router.get("/shoppingCart", (req, res) => {
+
+
+})
+
 module.exports = router;

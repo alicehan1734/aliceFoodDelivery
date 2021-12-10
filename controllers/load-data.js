@@ -347,28 +347,6 @@ router.get("/add-data", (req, res) => {
   }
 
 
-  // if (req.session.isClerk == undefined) {
-  //   res.render("general/error");
-  // } else {
-  //   if (req.session.isClerk) {
-
-  //     mealModel.find()
-  //       .exec()
-  //       .then((data) => {
-  //         // Pull the data (exclusively)
-  //         // This is to ensure that our "data" object contains the returned data (only) and nothing else.
-  //         data = data.map(value => value.toObject());
-  //         console.log(data);
-  //         // Render the "viewTable" view with the data
-  //         res.render("user/clerk/dataClerk", {
-  //           data
-  //         });
-  //       });
-  //   } else {
-  //     res.render("general/error");
-  //   }
-  // }
-
 });
 
 router.post("/add-data", (req, res) => {

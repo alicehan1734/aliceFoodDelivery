@@ -25,7 +25,26 @@ router.get("/", (req, res) => {
 
 router.get("/menu/description", (req, res) => {
 
+  console.log(req.query.id);
+
   console.log("description page");
+
+  mealsModel.findOne({
+    _id: req.query.id
+  }).then(menu => {
+
+    console.log(menu);
+
+    if (menu) {
+      console.log("I have menu");
+    } else {
+      console.log("No, I don't have");
+    }
+  })
+
+  res.render("general/description", {
+    mealsaInfo: info
+  });
 
 })
 
