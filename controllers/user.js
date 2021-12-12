@@ -234,12 +234,8 @@ router.post("/login", (req, res) => {
                 } else {
                   console.log("user is clerk")
                   res.redirect("/user/clerk/dashboard");
-
-
-
                 }
 
-                //res.redirect("/");
               }
               else {
                 console.log("Passwords do not match.");
