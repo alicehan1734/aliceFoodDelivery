@@ -235,6 +235,8 @@ router.post("/login", (req, res) => {
                   console.log("user is clerk")
                   res.redirect("/user/clerk/dashboard");
 
+
+
                 }
 
                 //res.redirect("/");
