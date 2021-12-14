@@ -564,6 +564,10 @@ footer > p {
     color:#e95c63;
   }
 
+  .trashImg{
+    width: 30px;
+    height: 30px;
+  }
 @media screen and (max-width : 1150px) {
 
 

@@ -27,6 +27,8 @@
             <th>Quantity</th>
             <th>Subtotal</th>
             <th>Remove</th>
+            <th>Add</th>
+
           </tr>
 
           {{#each orders}}
@@ -38,9 +40,16 @@
             <td>${{totalprice}}</td>
             <td class="remove">
               <a href=/remove-order/{{id}}>
-                Remove
+                <img src="/images/trash.png" class="trashImg">
               </a>
             </td>
+
+            <td class="remove">
+              <a href=/add-order/{{id}}>
+                <img src="/images/add.png" class="trashImg">
+              </a>
+            </td>
+
           </tr>
           {{/each}}
         </table>
