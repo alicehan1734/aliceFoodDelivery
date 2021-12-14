@@ -524,6 +524,8 @@ footer > p {
 
   .table{
     border-collapse: collapse;
+    font-family: 'Noto Sans Display', sans-serif;
+
   }
 
   .table th {
@@ -567,6 +569,15 @@ footer > p {
   .trashImg{
     width: 30px;
     height: 30px;
+  }
+
+  .totalTxt{
+    font-size: 20px;
+    font-weight: 700;
+    color: #FF6464;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    font-family: 'Noto Sans Display', sans-serif;
   }
 @media screen and (max-width : 1150px) {
 

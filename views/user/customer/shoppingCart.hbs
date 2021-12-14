@@ -55,7 +55,7 @@
         </table>
 
         {{else}}
-        <dd>Empty</dd>
+        <dd>Empty .. ! </dd>
         {{/if}}
       </div>
 
@@ -65,6 +65,13 @@
           <img src="/images/profile.png" />
           <div>{{user.firstName}} {{user.lastName}}</div>
           <div>{{user.email}}</div>
+        </div>
+
+        <div class="totalTxt">
+          Total : {{orderTotal}}
+        </div>
+        <div class="order">
+          <a class="buttonOrder" href="/check-out">Place Order</a>
         </div>
 
       </div>

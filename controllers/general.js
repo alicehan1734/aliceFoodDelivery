@@ -108,8 +108,8 @@ const prepareViewModel = function (req, message) {
     const hasOrders = cart.length > 0;
 
     if (hasOrders) {
-      cart.forEach(cartSong => {
-        orderTotal += cartSong.price * cartSong.qty;
+      cart.forEach(cartOrder => {
+        orderTotal += cartOrder.totalprice;
       });
     }
 
@@ -145,11 +145,11 @@ router.get("/add-order/:id", async (req, res) => {
     if (food) {
       var found = false;
 
-      cart.forEach(cartSong => {
-        if (cartSong.id == orderId) {
+      cart.forEach(cartOrder => {
+        if (cartOrder.id == orderId) {
           found = true;
-          cartSong.qty++;
-          cartSong.totalprice = cartSong.food.price * cartSong.qty;
+          cartOrder.qty++;
+          cartOrder.totalprice = cartOrder.food.price * cartOrder.qty;
 
         }
       });
@@ -182,7 +182,7 @@ router.get("/add-order/:id", async (req, res) => {
   }
   else {
     // Cannot add the song because the user is not logged in.
-    message = "You must be logged in.";
+    res.render("general/error");
   }
 
   res.render("user/customer/shoppingCart", prepareViewModel(req, message));
@@ -216,15 +216,85 @@ router.get("/remove-order/:id", (req, res) => {
   res.render("user/customer/shoppingCart", prepareViewModel(req, message));
 });
 
+// Check out the user (empty the cart).
+router.get("/check-out", (req, res) => {
+  var message;
+
+  if (req.session.user) {
+    var cart = req.session.cart || [];
+
+    if (cart.length > 0) {
+
+      console.log("checking order");
+
+      const sgMail = require("@sendgrid/mail");
+      sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
+      console.log(req.session.user.email);
+
+      const myJSON = JSON.stringify(cart);
+
+
+      const msg = {
+        to: req.session.user.email,
+        from: 'hhan34@myseneca.ca',
+        subject: 'Your Order of items',
+        html:
+          `
+            Dear Customer,<br>
+            <br> 
+            Thank you for shopping with us. We’ll send a confirmation once your items have shipped. <br>
+            Your order details are indicated below. <br><br> If you would like to view the status of your order or make any changes to it, <br> please visit Your Orders on https://senecacollegewebworkshop.herokuapp.com/.
+            
+            <br><br>${myJSON}
+            <br>
+            
+            Regards,<br><br>
+            HeeYeon Han<br> 
+            <span style="color: #E95C63;">Alice Food Delivery</span><br> 
+            +1(647) 269-1734<br> 
+            (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)<br>
+            <br>
+              `
+      };
+
+      sgMail.send(msg)
+        .then(() => {
+          console.log("success order");
+
+          message = "Thank you for your purchase, you are now checked out.";
+          req.session.cart = [];
+          res.render("user/customer/shoppingCart", prepareViewModel(req, message));
+
+          return;
+
+        })
+        .catch(err => {
+          message = `Error ${err}`;
+          res.render("user/customer/shoppingCart", prepareViewModel(req, message));
+
+          return;
+
+        });
+    }
+    else {
+      message = "You cannot check-out, there are no items in the cart.";
+      res.render("user/customer/shoppingCart", prepareViewModel(req, message));
+
+    }
+  }
+  else {
+
+
+    message = "You must be logged in.";
+    res.render("user/customer/shoppingCart", prepareViewModel(req, message));
+
+  }
+
+});
 
 router.get("/shoppingCart", (req, res) => {
 
-  res.render("user/customer/shoppingCart", {
-    hasOrders: false,
-    orders: [],
-    orderTotal: "$0.0",
-    message: ""
-  })
+  res.render("user/customer/shoppingCart", prepareViewModel(req, ""))
 })
 
 
