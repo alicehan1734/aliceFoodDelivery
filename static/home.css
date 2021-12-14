@@ -335,7 +335,7 @@ footer > p {
   height: 200px;
   border-radius: 50%;
   border: 1px solid #CFCFCF;
-
+  background-color: #FFFFFF;
 }
 .dashCon >div {
   text-align: center;
@@ -493,12 +493,76 @@ footer > p {
   }
   
   .buttonOrder:hover {
-
     background-color: #e95c63;
     color: white;
   }
 
+
+  .shoppingCart{
+    margin-top: 80px;
+    text-align: center;
+    font-family: 'Architects Daughter', cursive;
+
+  }
+
   
+  .shoppingCart > div:first-child{
+    font-size: 25px;
+    margin-bottom: 20px;
+
+
+  }
+
+  .shoppingCart > div:nth-child(2){
+    display: flex;
+    padding: 30px 50px;
+  }
+
+  .shoppingCart > div:nth-child(2) >div{
+    flex: 1;
+  }
+
+  .table{
+    border-collapse: collapse;
+  }
+
+  .table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #E95C63;
+    color: white;
+  }
+
+
+  .table td, .table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  .tableImg{
+    width: 100px;
+    height: 100px;
+  }
+
+  .profileCart >img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid #CFCFCF;
+  }
+
+  .remove{
+    color:gray;
+    font-weight: 700;
+    font-size: 20px;
+    transition: 0.4s;
+    cursor: pointer;
+  }
+
+  .remove :hover{
+    color:#e95c63;
+  }
 
 @media screen and (max-width : 1150px) {
 

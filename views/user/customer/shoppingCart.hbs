@@ -10,6 +10,63 @@
 
 <body>
 
+  <div class="shoppingCart">
+
+    <div>
+      Shopping Cart
+    </div>
+
+    <div>
+      <div>
+        {{#if hasOrders}}
+        <table border="1" cellspacing="2" cellpadding="2" class="table">
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Price($)</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+            <th>Remove</th>
+          </tr>
+
+          {{#each orders}}
+          <tr>
+            <td> <img src=/images/menuPictures/{{food.img}} class="tableImg"></td>
+            <td>{{food.title}}</td>
+            <td>${{food.price}}</td>
+            <td>{{qty}}</td>
+            <td>${{totalprice}}</td>
+            <td class="remove">
+              <a href=/remove-order/{{id}}>
+                Remove
+              </a>
+            </td>
+          </tr>
+          {{/each}}
+        </table>
+
+        {{else}}
+        <dd>Empty</dd>
+        {{/if}}
+      </div>
+
+
+      <div>
+        <div class="profileCart">
+          <img src="/images/profile.png" />
+          <div>{{user.firstName}} {{user.lastName}}</div>
+          <div>{{user.email}}</div>
+        </div>
+
+      </div>
+    </div>
+
+    {{#if message}}
+    <h3 style="color: red;">{{message}}</h3>
+    {{/if}}
+
+  </div>
+
 
 </body>
 
