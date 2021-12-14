@@ -261,7 +261,7 @@ router.get("/check-out", (req, res) => {
         .then(() => {
           console.log("success order");
 
-          message = "Thank you for your purchase, you are now checked out.";
+          message = "Thank you for your purchase, you are now placed order.";
           req.session.cart = [];
           res.render("user/customer/shoppingCart", prepareViewModel(req, message));
 
@@ -277,7 +277,7 @@ router.get("/check-out", (req, res) => {
         });
     }
     else {
-      message = "You cannot check-out, there are no items in the cart.";
+      message = "You cannot place order, there are no items in the cart.";
       res.render("user/customer/shoppingCart", prepareViewModel(req, message));
 
     }
