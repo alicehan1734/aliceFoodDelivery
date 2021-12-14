@@ -209,6 +209,7 @@ header>div> div img {
   color: #333;
   flex: 1;
   margin: 15px;
+  text-decoration: none;
 }
 
 .card:hover {
@@ -364,7 +365,134 @@ footer > p {
 .custom-shape-divider-top-1637275008 .shape-fill {
   fill: #FF6464;
 }
-@media screen and (max-width : 1000px) {
+
+.shoppingImg{
+  align-self: center;
+  margin-right: 15px;
+}
+.shoppingImg > img{
+  width: 30px;
+  height: 30px;
+}
+
+.description{
+  position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.descriptionImg {
+  width: 100%;
+  height: 500px;
+}
+
+.detailDesc{
+  position:absolute;
+  top: 100%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    width: 100%;
+    background: linear-gradient( to bottom, rgba(255, 255, 255, 0.644), #ffffff );
+    height: 80px;
+    display: flex;
+    padding: 10px 0;
+  }
+
+  .detailDesc >div{
+    text-align: center;
+    flex: 1;
+  }
+
+  .detailDesc >div > div:first-child{
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #585859;
+  }
+
+  .detailDesc >div > div:last-child{
+    font-size: 23px;
+    font-family: 'Architects Daughter', cursive;
+
+    color: #e95c63;
+  }
+
+  .titleDesc{
+    font-family: 'Architects Daughter', cursive;
+    font-size: 40px;
+    color: #e95c63;
+    text-align: center;
+  }
+  .categoryDesc 
+  {
+    margin-bottom: 150px;
+  }
+  .categoryDesc > div:first-child{
+    color: #585859;
+    font-size: 20px;
+    text-align: center;
+    margin: 5px;
+  }
+
+  
+  .categoryDesc > div:nth-child(2){
+    color: #585859;
+    font-size: 15px;
+    text-align: center;
+    margin: 15px;
+    margin-bottom: 50px;
+
+  }
+    
+  .categoryDesc > div:nth-child(3){
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    margin: 15px;
+    font-family: 'Architects Daughter', cursive;
+
+  }
+
+  .topDesc{
+    position:absolute;
+      left: 90%;
+      transform: translate(0%, -90%);
+      top: 25%;
+  }
+  .topDesc > img{
+    width: 100px;
+    height: 100px;
+  }
+
+  .order{
+    text-align: center;
+  }
+
+  .buttonOrder {
+    background-color: white;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    color: #E95C63;
+    padding: 13px 100px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: 0.4s;
+    display: inline-block;
+    border-radius: 10px;
+    border: 1px solid #e95c63;
+  
+  }
+  
+  .buttonOrder:hover {
+
+    background-color: #e95c63;
+    color: white;
+  }
+
+  
+
+@media screen and (max-width : 1150px) {
 
 
   .custom-shape-divider-top-1637275008 svg {
@@ -459,5 +587,38 @@ footer >div {
   font-size: 15px;
 }
 
+.buttonLogin{
+  align-self: center;
+  padding: 8px 10px;
+}
 
+.buttonSignup{
+  align-self: center;
+  padding: 8px 10px;
+}
+
+.topDesc{
+  left: unset;
+}
+.detailDesc >div > div:first-child{
+  font-size: 13px;
+
+}
+
+.detailDesc >div > div:last-child{
+  font-size: 17px;
+
+}
+.detailDesc{
+height: 110px;
+}
+
+.topDesc > img{
+  width: 70px;
+  height: 70px;
+}
+
+.topDesc{
+  top: 15%;
+}
 }

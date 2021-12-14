@@ -22,6 +22,19 @@
     </ul>
 
     <ul class="navbar_button">
+
+      {{#if isClerk}}
+
+      <div>
+
+      </div>
+      {{else}}
+
+      <div class="shoppingImg">
+        <img src="/images/shoppingCart.png" />
+      </div>
+
+      {{/if}}
       <a class="buttonLogin" href="/user/dashboard">DashBoard</a>
       <a class="buttonSignup" href="/user/logout">Log out</a>
     </ul>

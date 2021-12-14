@@ -9,6 +9,8 @@ router.get("/", (req, res) => {
 
   let filtered = [];
 
+  console.log(req.session);
+
   mealsModel.find().exec().then(data => {
 
     filtered = data.filter((value) => value.top);
@@ -29,6 +31,7 @@ router.get("/menu/description", (req, res) => {
 
   console.log("description page");
 
+
   mealsModel.findOne({
     _id: req.query.id
   }).then(menu => {
@@ -37,14 +40,21 @@ router.get("/menu/description", (req, res) => {
 
     if (menu) {
       console.log("I have menu");
+
+      console.log(menu);
+
+      res.render("general/description", {
+        values: menu.toObject()
+      });
+
     } else {
       console.log("No, I don't have");
+
+      res.render("general/error");
+
     }
   })
 
-  res.render("general/description", {
-    mealsaInfo: info
-  });
 
 })
 

@@ -13,10 +13,7 @@
 var express = require("express");
 const exphbs = require('express-handlebars');
 const session = require("express-session");
-const fileUpload = require("upload");
-
-
-
+const fileUpload = require("express-fileupload");
 
 //const sequelizeModule = require("sequelize");
 const bodyParser = require('body-parser');
@@ -43,6 +40,7 @@ app.use(session({
 
 app.use((req, res, next) => {
   res.locals.user = req.session.user;
+
   next();
 })
 app.use(fileUpload());

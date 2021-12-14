@@ -1,3 +1,103 @@
-<div>
+<!DOCTYPE html>
+<html lang="en">
 
-</div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="description.css">
+
+</head>
+
+<body>
+
+  <div class="description">
+
+    <div>
+      <img src=/images/menuPictures/{{{values.img}}} class="descriptionImg">
+    </div>
+    {{#if values.top}}
+
+    <div class="topDesc">
+      <img src="/images/top.png" />
+    </div>
+
+    {{else}}
+
+    {{/if}}
+
+
+    <div class="detailDesc">
+      <div>
+        <div>
+          Price
+        </div>
+
+        <div>
+          $ {{values.price}}
+        </div>
+
+
+      </div>
+      <div>
+        <div>
+          Time
+        </div>
+
+        <div>
+          {{values.time}} minutes
+        </div>
+
+      </div>
+      <div>
+        <div>
+          Serving(s)
+        </div>
+
+        <div>
+          {{values.serv}}
+        </div>
+
+      </div>
+
+      <div>
+        <div>
+          Calories per Serving
+        </div>
+
+        <div>
+          {{values.calperServ}} calories
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <div class="titleDesc">
+    {{values.title}}
+  </div>
+
+  <div class="categoryDesc">
+    <div>{{values.category}}</div>
+    <div>{{values.desc}}</div>
+    <div>{{values.included}}</div>
+
+    <div class="order">
+      <a class="buttonOrder">Add to Order</a>
+    </div>
+
+    <div>
+
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>
