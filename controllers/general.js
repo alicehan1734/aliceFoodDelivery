@@ -255,6 +255,8 @@ router.get("/check-out", (req, res) => {
             (Mon-Fri: 8AM-11:45PM, Sat-Sun: 9AM-8PM)<br>
             <br>
               `
+
+
       };
 
       sgMail.send(msg)
