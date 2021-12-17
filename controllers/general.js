@@ -248,6 +248,8 @@ router.get("/check-out", (req, res) => {
             <br><br>${myJSON}
             <br>
             
+
+            
             Regards,<br><br>
             HeeYeon Han<br> 
             <span style="color: #E95C63;">Alice Food Delivery</span><br> 
