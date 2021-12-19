@@ -244,10 +244,6 @@ router.get("/check-out", (req, res) => {
             <br> 
             Thank you for shopping with us. We’ll send a confirmation once your items have shipped. <br>
             Your order details are indicated below. <br><br> If you would like to view the status of your order or make any changes to it, <br> please visit Your Orders on https://senecacollegewebworkshop.herokuapp.com/.
-
-            
-
-            
             Regards,<br><br>
             HeeYeon Han<br> 
             <span style="color: #E95C63;">Alice Food Delivery</span><br> 
