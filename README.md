@@ -1,4 +1,4 @@
-# WEB322 Project (Fall 2021)
+# Alice Food
 I declare that this is my own work. No part of this project has been
 copied manually or electronically from any other source
 (including web sites).
