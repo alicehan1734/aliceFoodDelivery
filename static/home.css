@@ -1,8 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans Display', sans-serif;
+  font-family: 'Sora', sans-serif;
   padding-top: 60px;
+  
 }
 
 .frontfix{
@@ -10,13 +11,13 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  z-index: 5;
 }
 
 .top {
   text-align: center;
-  background-color: #878383;
-  color: white;
+  background-color: #b1abab;
+  color: black;
   padding: 5px;
   font-size: 12px;
 }
@@ -30,8 +31,9 @@ body {
 header {
   width: 100%;
   background-color: white;
-  border: 1px solid #e95c63;
-  font-family: 'Architects Daughter', cursive;
+  /* border: 1px solid #e95c63; */
+  font-family: 'Sora', sans-serif;
+
 }
 
 header > div {
@@ -76,6 +78,28 @@ header>div> div img {
   padding-left: 30px;
 }
 
+.menuButton {
+  text-decoration: none;
+  background-color: #E95C63;
+  border: 1px solid #e95c63;
+  color: white;
+  display: inline-block;
+  cursor: pointer;
+  padding: 13px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 1;
+  transition: 0.6s;
+  border-radius: 10px;
+
+}
+
+.menuButton:hover {
+  text-decoration: none;
+  background-color: white;
+  color: #E95C63;
+}
 
 
 .buttonLogin {
@@ -95,7 +119,6 @@ header>div> div img {
 
 }
 
-
 .buttonSignup {
   background-color: white;
   border: none;
@@ -106,7 +129,7 @@ header>div> div img {
   text-align: center;
   font-size: 16px;
   margin: 4px 2px;
-  opacity: 0.6;
+  opacity: 0.7;
   transition: 0.4s;
   display: inline-block;
   border-radius: 24px;
@@ -118,21 +141,25 @@ header>div> div img {
 
 .container {
   position: relative;
-  text-align: center;
+  text-align: left;
   color: white;
 }
 
 
-.container > img{
+.container > video{
   width: 100%;
-  margin-top: -250px;
+  /* margin-top: -150px; */
+  z-index: 2;
+  height: auto;
 }
 
 .container >div {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 35%;
   transform: translate(-50%, -100%);
+  z-index: 3;
+
 }
 
 
@@ -143,9 +170,7 @@ header>div> div img {
 
 .grid > h2 {
   color: #585859;
-  font-family: 'Architects Daughter', cursive;
-
-}
+  font-family: 'Sora', sans-serif;}
 .grid > button {
   background-color: #F4858C;
   border: none;
@@ -175,23 +200,21 @@ header>div> div img {
 .gridmain > div{
   flex: 1;
   padding: 20px;
-  font-family: 'Architects Daughter', cursive;
-
+  font-family: 'Sora', sans-serif;
 }
 .gridmain > div > img{
-  width: 15vw;
-  height: 15vw;
+  width: 15rem;
+  height: 15rem;
   border-radius:50%;
 }
 
 .topmenu{
-  background-color: #DFDFDF;
+  background-color: #f9f8f7;
 }
 
 .topmenu > h2 {
-  color: #777777;
-  font-family: 'Architects Daughter', cursive;
-
+  color: #333;
+  font-family: 'Sora', sans-serif;
 }
 .radius{
   border-radius:30px;
@@ -208,9 +231,10 @@ header>div> div img {
 }
 
 .card {
+  position: relative;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
-  width: 40%;
+  /* width: 30rem; */
   background-color: white;
   color: #333;
   flex: 1;
@@ -219,13 +243,13 @@ header>div> div img {
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2);
+  color:#e95c63
 }
 
 .card >div {
   padding: 2px 16px;
-  font-family: 'Architects Daughter', cursive;
-
+  font-family: 'Sora', sans-serif;
 }
 
 .card > img{
@@ -248,13 +272,13 @@ header>div> div img {
 }
 
 .topmenugrid{
-  display: flex;
-  flex-flow: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 footer {
-  background-color: #FFFFFF;
-  color: #585859;
+  background-color: #FF6464;
+  color: white;
   padding: 10px 50px;
   display: grid;
 }
@@ -283,7 +307,7 @@ footer > div > div> a {
 }
 
 footer > div > div> a:hover {
-color: #E95C63;
+color: white;
 cursor: pointer;
 }
 
@@ -309,8 +333,8 @@ footer > p {
 
 
 .errorCon{
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 100px;
+  padding-bottom: 100px;
   text-align-last: center;
 }
 
@@ -326,8 +350,7 @@ footer > p {
   padding-top: 80px;
   text-align-last: center;
   padding-bottom: 40px;
-  font-family: 'Architects Daughter', cursive;
-
+  font-family: 'Sora', sans-serif;
 }
 
 .dashCon > img{
@@ -377,6 +400,7 @@ footer > p {
 .shoppingImg{
   align-self: center;
   margin-right: 15px;
+  cursor: pointer;
 }
 .shoppingImg > img{
   width: 30px;
@@ -419,14 +443,12 @@ footer > p {
 
   .detailDesc >div > div:last-child{
     font-size: 23px;
-    font-family: 'Architects Daughter', cursive;
-
+    font-family: 'Sora', sans-serif;
     color: #e95c63;
   }
 
   .titleDesc{
-    font-family: 'Architects Daughter', cursive;
-    font-size: 40px;
+    font-family: 'Sora', sans-serif;    font-size: 40px;
     color: #e95c63;
     text-align: center;
   }
@@ -456,10 +478,16 @@ footer > p {
     font-size: 20px;
     text-align: center;
     margin: 15px;
-    font-family: 'Architects Daughter', cursive;
-
+    font-family: 'Sora', sans-serif;
   }
+.topImage{
+  z-index: 2;
+}
 
+.topImage > img{
+  width: 50px;
+  height: 50px;
+}
   .topDesc{
     position:absolute;
       left: 90%;
@@ -501,8 +529,7 @@ footer > p {
   .shoppingCart{
     margin-top: 80px;
     text-align: center;
-    font-family: 'Architects Daughter', cursive;
-
+    font-family: 'Sora', sans-serif;
   }
 
   
@@ -524,8 +551,7 @@ footer > p {
 
   .table{
     border-collapse: collapse;
-    font-family: 'Noto Sans Display', sans-serif;
-
+    font-family: 'Sora', sans-serif;
   }
 
   .table th {
@@ -577,8 +603,7 @@ footer > p {
     color: #FF6464;
     margin-top: 20px;
     margin-bottom: 15px;
-    font-family: 'Noto Sans Display', sans-serif;
-  }
+    font-family: 'Sora', sans-serif;  }
 
   dd{
     padding: 0;
@@ -586,6 +611,10 @@ footer > p {
   }
 @media screen and (max-width : 1150px) {
 
+
+  .topmenugrid{
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   .custom-shape-divider-top-1637275008 svg {
     width: calc(179% + 1.3px);
@@ -660,8 +689,7 @@ footer >div {
 
 .menuCon {
   flex-direction: column;
-  font-family: 'Architects Daughter', cursive;
-
+  font-family: 'Sora', sans-serif;
 }
 
 .navbar_menu> li> a{
@@ -748,4 +776,29 @@ height: 110px;
 .table td{
   padding:2px
 }
+}
+
+
+@media screen and (max-width : 840px) {
+
+  .container > div{
+    margin-top: 5rem;
+  }
+  .container > div> h1{
+    font-size: 17px;
+  }
+
+  .container > div> h3{
+    font-size: 13px;
+  }
+
+  .menuButton{
+    font-size: 13px;
+    padding: 7px 16px;
+  }
+
+  .topmenugrid{
+    grid-template-columns: repeat(1, 1fr);
+  }
+
 }

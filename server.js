@@ -68,10 +68,10 @@ mongoose.connect(process.env.MONGO_CONN_STRING, {
   useUnifiedTopology: true,
 })
   .then(() => {
-    console.log("Connected to the MongoDB database.")
+    // console.log("Connected to the MongoDB database.")
   })
   .catch((err) => {
-    console.log(`There was a problem connecting to MongoDB ${err}`)
+    // console.log(`There was a problem connecting to MongoDB ${err}`)
   });
 
 
@@ -79,11 +79,11 @@ mongoose.connect(process.env.MONGO_CONN_STRING, {
 var HTTP_PORT = process.env.PORT || 8080;
 
 function onHttpStart() {
-  console.log("Express http server listening on: " + HTTP_PORT);
+  // console.log("Express http server listening on: " + HTTP_PORT);
 }
 
 app.use(function (err, req, res, next) {
-  console.log(err.stack);
+  // console.log(err.stack);
   res.status(500).send("Something broke!")
 })
 

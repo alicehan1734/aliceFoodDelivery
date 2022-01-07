@@ -64,7 +64,7 @@ router.post("/signup", (req, res) => {
 
 
         if (user == null) {
-          console.log(`Email is not existed`);
+          //console.log(`Email is not existed`);
 
         } else {
           validation.email = "Email already used. Please choose a different email"
@@ -135,7 +135,7 @@ router.post("/signup", (req, res) => {
 
           })
           .catch(err => {
-            console.log(`Error ${err}`);
+            //console.log(`Error ${err}`);
 
             res.render("user/signup", {
               values: req.body,
@@ -144,7 +144,7 @@ router.post("/signup", (req, res) => {
           });
 
 
-        console.log(`User ${userSaved.firstName} has been added to the database.`);
+        //console.log(`User ${userSaved.firstName} has been added to the database.`);
 
         // let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.profilePic.name).ext}`;
 
@@ -168,7 +168,7 @@ router.post("/signup", (req, res) => {
 
       })
       .catch((err) => {
-        console.log(`Error adding user to the database ... ${err}`);
+        //console.log(`Error adding user to the database ... ${err}`);
         res.redirect("/");
       });
 
@@ -194,7 +194,7 @@ router.post("/login", (req, res) => {
   let errors = [];
   let passwordErr = [];
 
-  console.log(req.body);
+  //console.log(req.body);
 
   if (email.trim().length === 0) {
 
@@ -228,17 +228,17 @@ router.post("/login", (req, res) => {
 
                 if (!req.session.isClerk) {
 
-                  console.log("user is customer")
+                  //console.log("user is customer")
                   res.redirect("/user/customer/dashboard");
 
                 } else {
-                  console.log("user is clerk")
+                  //console.log("user is clerk")
                   res.redirect("/user/clerk/dashboard");
                 }
 
               }
               else {
-                console.log("Passwords do not match.");
+                //console.log("Passwords do not match.");
                 errors.push("Wrong passord. Try again or click Forgot password to reset it. 💁 ");
                 //errors.push("Sorry, you entered an invalid email and/or password");
 
@@ -254,7 +254,7 @@ router.post("/login", (req, res) => {
             })
             .catch(err => {
 
-              console.log(`Unable to compare passwords ... ${err}`);
+              // console.log(`Unable to compare passwords ... ${err}`);
               errors.push("Oops, something went wrong.");
 
               res.render("user/login", {
@@ -266,7 +266,7 @@ router.post("/login", (req, res) => {
         }
         else {
 
-          console.log("User not found in the database.");
+          // console.log("User not found in the database.");
           errors.push("Couldn't find your Account 🙅");
 
           //errors.push("Sorry, you entered an invalid email and/or password");
@@ -279,7 +279,7 @@ router.post("/login", (req, res) => {
       })
       .catch(err => {
 
-        console.log(`Error finding the user in the database ... ${err}`);
+        //console.log(`Error finding the user in the database ... ${err}`);
         errors.push("Oops, something went wrong.");
 
         res.render("user/login", {
@@ -369,7 +369,7 @@ router.post("/password", (req, res) => {
               return;
             })
             .catch(err => {
-              console.log(`Error ${err}`);
+              //console.log(`Error ${err}`);
 
               res.render("user/signup", {
                 values: req.body,
@@ -392,7 +392,7 @@ router.post("/password", (req, res) => {
       })
       .catch(err => {
 
-        console.log(`We don't have matched email yet, ${err}`);
+        //console.log(`We don't have matched email yet, ${err}`);
 
         return;
 
@@ -425,7 +425,7 @@ router.post("/password", (req, res) => {
 
             userModel.updateOne(query, { 'password': validation.password }, { upsert: true }, function (err, doc) {
               if (err) return res.send(500, { error: err });
-              console.log("success");
+              // console.log("success");
 
               return res.send('Succesfully saved.');
             });

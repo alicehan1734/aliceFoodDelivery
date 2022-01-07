@@ -166,7 +166,7 @@ router.get("/add-order/:id", async (req, res) => {
           totalprice: food.price
         });
 
-        console.log(cart);
+        // console.log(cart);
 
         cart.sort((a, b) => a.food.title.localeCompare(b.food.title));
 
@@ -225,11 +225,11 @@ router.get("/check-out", (req, res) => {
 
     if (cart.length > 0) {
 
-      console.log("checking order");
+      // console.log("checking order");
 
       const sgMail = require("@sendgrid/mail");
       sgMail.setApiKey(process.env.SEND_GRID_API_KEY);
-      console.log(req.session.user.email);
+      // console.log(req.session.user.email);
 
       const myJSON = JSON.stringify(cart);
 
@@ -257,7 +257,7 @@ router.get("/check-out", (req, res) => {
 
       sgMail.send(msg)
         .then(() => {
-          console.log("success order");
+          // console.log("success order");
 
           message = "Thank you for your purchase, you are now placed order.";
           req.session.cart = [];

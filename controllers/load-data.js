@@ -9,15 +9,15 @@ let message = "";
 
 router.get("/meal-kits", (req, res) => {
 
-  console.log(req.session.user && req.session.isClerk)
+  // console.log(req.session.user && req.session.isClerk)
 
   if (req.session.user && req.session.isClerk) {
 
-    console.log("gkgk")
+    // console.log("gkgk")
     mealModel.find().count({}, (err, count) => {
 
       if (err) {
-        console.log(err);
+        // console.log(err);
 
         message = "Couldn't find: " + err;
 
@@ -284,7 +284,7 @@ router.get("/meal-kits", (req, res) => {
 
           }
           else {
-            console.log("success");
+            // console.log("success");
 
             message = "Added meal kits to the database";
 
@@ -322,7 +322,7 @@ router.get("/meal-kits", (req, res) => {
 
 router.get("/add-data", (req, res) => {
 
-  console.log(req.body)
+  // console.log(req.body)
   if (req.session.user && req.session.isClerk) {
     mealModel.find()
       .exec()
@@ -334,7 +334,7 @@ router.get("/add-data", (req, res) => {
         // data = data.slice(0, 5);
         data = data.map(value => value.toObject());
 
-        console.log(data);
+        // console.log(data);
 
         // Render the "viewTable" view with the data
         res.render("user/clerk/dataClerk", {
@@ -351,7 +351,7 @@ router.get("/add-data", (req, res) => {
 
 router.post("/add-data", (req, res) => {
 
-  console.log(req.body);
+  // console.log(req.body);
 
   let errorMsg = "";
 
@@ -379,7 +379,7 @@ router.post("/add-data", (req, res) => {
       meal.save()
         .then((userSaved) => {
 
-          console.log(`User ${userSaved.title} has been added to the database.`);
+          //console.log(`User ${userSaved.title} has been added to the database.`);
 
           let uniqueName = `profile-pic-${userSaved._id}${path.parse(req.files.img.name).ext}`;
 
@@ -392,12 +392,12 @@ router.post("/add-data", (req, res) => {
                 img: uniqueName
               })
                 .then(() => {
-                  console.log("User document was updated with the profile picture.");
+                  //console.log("User document was updated with the profile picture.");
                   res.redirect("/load-data/add-data");
 
                 })
                 .catch(err => {
-                  console.log(`Error updating the user's profile picture ... ${err}`);
+                  // console.log(`Error updating the user's profile picture ... ${err}`);
                   res.redirect("/load-data/add-data");
                 })
 
@@ -405,7 +405,7 @@ router.post("/add-data", (req, res) => {
 
 
         }).catch((err) => {
-          console.log(`Error adding user to the database ... ${err}`);
+          //console.log(`Error adding user to the database ... ${err}`);
           res.redirect("/load-data/add-data");
         });
 
@@ -416,7 +416,7 @@ router.post("/add-data", (req, res) => {
 
   } else {
     errorMsg = "Please fill out all of the forms"
-    console.log(errorMsg);
+    //console.log(errorMsg);
 
     mealModel.find()
       .exec()
@@ -468,14 +468,14 @@ router.get("/revise-menu", (req, res) => {
 router.post("/revise-menu", (req, res) => {
 
   let validation = "";
-  console.log(req.body)
+  //console.log(req.body)
   // Update the document in the collection.
   if (req.session.user && req.session.isClerk) {
 
     if (req.files) {
       let uniqueName = `profile-pic-${req.body.id}${path.parse(req.files.img.name).ext}`;
 
-      console.log(uniqueName);
+      //console.log(uniqueName);
 
       req.files.img.mv(`static/images/menuPictures/${uniqueName}`)
         .then(() => {
@@ -486,11 +486,11 @@ router.post("/revise-menu", (req, res) => {
             img: uniqueName
           })
             .then(() => {
-              console.log("User document was updated with the profile picture.");
+              //console.log("User document was updated with the profile picture.");
 
             })
             .catch(err => {
-              console.log(`Error updating the user's profile picture ... ${err}`);
+              //console.log(`Error updating the user's profile picture ... ${err}`);
             })
 
         });
@@ -512,11 +512,11 @@ router.post("/revise-menu", (req, res) => {
       top: req.body.top === "true"
     })
       .then(() => {
-        console.log("User document was updated.");
+        //console.log("User document was updated.");
         res.redirect("/load-data/revise-menu?id=" + req.body.id);
       })
       .catch(err => {
-        console.log(`Error updating the user's profile picture ... ${err}`);
+        //console.log(`Error updating the user's profile picture ... ${err}`);
         res.render("general/error");
       })
   } else {

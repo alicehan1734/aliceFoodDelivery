@@ -41,11 +41,11 @@ userSchema.pre("save", function (next) {
           next();
         })
         .catch(err => {
-          console.log(`Error occurred when hashing ... ${err}`);
+          //console.log(`Error occurred when hashing ... ${err}`);
         })
     })
     .catch(err => {
-      console.log(`Error occurred when salting ... ${err}`);
+      //console.log(`Error occurred when salting ... ${err}`);
     })
 });
 
