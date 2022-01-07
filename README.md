@@ -5,7 +5,7 @@
 [![Website Status](https://img.shields.io/badge/Website%20Status-Online-green)](https://heeyeonhan.com/glm/)
 [![Author](https://img.shields.io/badge/Author-Heeyeon%20Han-blue.svg)](https://www.linkedin.com/in/alicehan1734/)
 
- <p align="justify">A front-end website for food market place which the user can order and check the food menu for called Alice Food Delivery. </p>
+ <p align="justify">A website for food market place which the user can order and check the food menu for called Alice Food Delivery. </p>
  
  Link - https://senecacollegewebworkshop.herokuapp.com/
  
