@@ -1,7 +1,6 @@
 # <a href="https://senecacollegewebworkshop.herokuapp.com/" target="_blank">Alice Food Delivery</a>
 
 [![Repository Status](https://img.shields.io/badge/Repository%20Status-Maintained-dark%20green.svg)](https://github.com/alicehan1734/aliceFoodDelivery)
-![Latest Release](https://img.shields.io/github/last-commit/alicehan1734/aliceFoodDelivery)
 [![Website Status](https://img.shields.io/badge/Website%20Status-Online-green)](https://heeyeonhan.com/glm/)
 [![Author](https://img.shields.io/badge/Author-Heeyeon%20Han-blue.svg)](https://www.linkedin.com/in/alicehan1734/)
 
