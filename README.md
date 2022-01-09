@@ -41,4 +41,4 @@ and Delete food list, Profile, Persistent login</p>
 - HeroKu
 - HandlerBars
 - MongoDB (Database - User information, Menu list ) 
-- SendGrid (Email Platform- Varidation code for changing password, Receipt and Invoice email , Sign up success message )
+- SendGrid (Email Platform- Varidation code for changing password, Receipt and Invoice email and Sign up success message )
