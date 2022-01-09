@@ -11,7 +11,25 @@
  
 ## Demo
 
+>Main & Menu Page
 
+![](./demo/Main.gif)
+
+>Signup & Login 
+
+![](./demo/SignUp.gif)
+
+>Manage Menu List
+
+![](./demo/Manage.gif)
+
+>Shopping Cart
+
+![](./demo/Shopping.gif)
+
+>Responsive Design
+
+![](./demo/Responsive.gif)
 
 ## Technologies Used
 
