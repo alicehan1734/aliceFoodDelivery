@@ -4,8 +4,10 @@
 [![Website Status](https://img.shields.io/badge/Website%20Status-Online-green)](https://heeyeonhan.com/glm/)
 [![Author](https://img.shields.io/badge/Author-Heeyeon%20Han-blue.svg)](https://www.linkedin.com/in/alicehan1734/)
 
- <p align="justify">Alice Food Delivery is the Web application that privides recipes and delivers the ingredients straight to customer door. </p>
- 
+ <p align="justify">Alice Food Delivery is the Web application that privides recipes and delivers the ingredients straight to customer door</p>
+  <p align="justify">Included User authentication, Email platform for validation code and Success Order / Sign up message, Upload
+and Delete food list, Profile, Persistent login</p>
+
  Link - https://senecacollegewebworkshop.herokuapp.com/
  
 ## Demo
